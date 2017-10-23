@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FCA027E01F9DC8740018E4AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA027DF1F9DC8740018E4AE /* AppDelegate.m */; };
+		FCA027E31F9DC8740018E4AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA027E21F9DC8740018E4AE /* ViewController.m */; };
+		FCA027E61F9DC8740018E4AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA027E41F9DC8740018E4AE /* Main.storyboard */; };
+		FCA027E81F9DC8740018E4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA027E71F9DC8740018E4AE /* Assets.xcassets */; };
+		FCA027EB1F9DC8740018E4AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA027E91F9DC8740018E4AE /* LaunchScreen.storyboard */; };
+		FCA027EE1F9DC8740018E4AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA027ED1F9DC8740018E4AE /* main.m */; };
+		FCA027F81F9DC8750018E4AE /* GuanruAppDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA027F71F9DC8750018E4AE /* GuanruAppDemoTests.m */; };
+		FCA028031F9DC8750018E4AE /* GuanruAppDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA028021F9DC8750018E4AE /* GuanruAppDemoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FCA027F41F9DC8740018E4AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCA027D31F9DC8730018E4AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCA027DA1F9DC8740018E4AE;
+			remoteInfo = GuanruAppDemo;
+		};
+		FCA027FF1F9DC8750018E4AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCA027D31F9DC8730018E4AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCA027DA1F9DC8740018E4AE;
+			remoteInfo = GuanruAppDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FCA027DB1F9DC8740018E4AE /* GuanruAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuanruAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCA027DE1F9DC8740018E4AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FCA027DF1F9DC8740018E4AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FCA027E11F9DC8740018E4AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FCA027E21F9DC8740018E4AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FCA027E51F9DC8740018E4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FCA027E71F9DC8740018E4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FCA027EA1F9DC8740018E4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FCA027EC1F9DC8740018E4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCA027ED1F9DC8740018E4AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FCA027F31F9DC8740018E4AE /* GuanruAppDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuanruAppDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCA027F71F9DC8750018E4AE /* GuanruAppDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanruAppDemoTests.m; sourceTree = "<group>"; };
+		FCA027F91F9DC8750018E4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCA027FE1F9DC8750018E4AE /* GuanruAppDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuanruAppDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCA028021F9DC8750018E4AE /* GuanruAppDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuanruAppDemoUITests.m; sourceTree = "<group>"; };
+		FCA028041F9DC8750018E4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FCA027D81F9DC8740018E4AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027F01F9DC8740018E4AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027FB1F9DC8750018E4AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FCA027D21F9DC8730018E4AE = {
+			isa = PBXGroup;
+			children = (
+				FCA027DD1F9DC8740018E4AE /* GuanruAppDemo */,
+				FCA027F61F9DC8740018E4AE /* GuanruAppDemoTests */,
+				FCA028011F9DC8750018E4AE /* GuanruAppDemoUITests */,
+				FCA027DC1F9DC8740018E4AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FCA027DC1F9DC8740018E4AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCA027DB1F9DC8740018E4AE /* GuanruAppDemo.app */,
+				FCA027F31F9DC8740018E4AE /* GuanruAppDemoTests.xctest */,
+				FCA027FE1F9DC8750018E4AE /* GuanruAppDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FCA027DD1F9DC8740018E4AE /* GuanruAppDemo */ = {
+			isa = PBXGroup;
+			children = (
+				FCA027DE1F9DC8740018E4AE /* AppDelegate.h */,
+				FCA027DF1F9DC8740018E4AE /* AppDelegate.m */,
+				FCA027E11F9DC8740018E4AE /* ViewController.h */,
+				FCA027E21F9DC8740018E4AE /* ViewController.m */,
+				FCA027E41F9DC8740018E4AE /* Main.storyboard */,
+				FCA027E71F9DC8740018E4AE /* Assets.xcassets */,
+				FCA027E91F9DC8740018E4AE /* LaunchScreen.storyboard */,
+				FCA027EC1F9DC8740018E4AE /* Info.plist */,
+				FCA027ED1F9DC8740018E4AE /* main.m */,
+			);
+			path = GuanruAppDemo;
+			sourceTree = "<group>";
+		};
+		FCA027F61F9DC8740018E4AE /* GuanruAppDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				FCA027F71F9DC8750018E4AE /* GuanruAppDemoTests.m */,
+				FCA027F91F9DC8750018E4AE /* Info.plist */,
+			);
+			path = GuanruAppDemoTests;
+			sourceTree = "<group>";
+		};
+		FCA028011F9DC8750018E4AE /* GuanruAppDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FCA028021F9DC8750018E4AE /* GuanruAppDemoUITests.m */,
+				FCA028041F9DC8750018E4AE /* Info.plist */,
+			);
+			path = GuanruAppDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FCA027DA1F9DC8740018E4AE /* GuanruAppDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA028071F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemo" */;
+			buildPhases = (
+				FCA027D71F9DC8740018E4AE /* Sources */,
+				FCA027D81F9DC8740018E4AE /* Frameworks */,
+				FCA027D91F9DC8740018E4AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GuanruAppDemo;
+			productName = GuanruAppDemo;
+			productReference = FCA027DB1F9DC8740018E4AE /* GuanruAppDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FCA027F21F9DC8740018E4AE /* GuanruAppDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA0280A1F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemoTests" */;
+			buildPhases = (
+				FCA027EF1F9DC8740018E4AE /* Sources */,
+				FCA027F01F9DC8740018E4AE /* Frameworks */,
+				FCA027F11F9DC8740018E4AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCA027F51F9DC8740018E4AE /* PBXTargetDependency */,
+			);
+			name = GuanruAppDemoTests;
+			productName = GuanruAppDemoTests;
+			productReference = FCA027F31F9DC8740018E4AE /* GuanruAppDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FCA027FD1F9DC8750018E4AE /* GuanruAppDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA0280D1F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemoUITests" */;
+			buildPhases = (
+				FCA027FA1F9DC8750018E4AE /* Sources */,
+				FCA027FB1F9DC8750018E4AE /* Frameworks */,
+				FCA027FC1F9DC8750018E4AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCA028001F9DC8750018E4AE /* PBXTargetDependency */,
+			);
+			name = GuanruAppDemoUITests;
+			productName = GuanruAppDemoUITests;
+			productReference = FCA027FE1F9DC8750018E4AE /* GuanruAppDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FCA027D31F9DC8730018E4AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = guanrukeji;
+				TargetAttributes = {
+					FCA027DA1F9DC8740018E4AE = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					FCA027F21F9DC8740018E4AE = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FCA027DA1F9DC8740018E4AE;
+					};
+					FCA027FD1F9DC8750018E4AE = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FCA027DA1F9DC8740018E4AE;
+					};
+				};
+			};
+			buildConfigurationList = FCA027D61F9DC8730018E4AE /* Build configuration list for PBXProject "GuanruAppDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FCA027D21F9DC8730018E4AE;
+			productRefGroup = FCA027DC1F9DC8740018E4AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FCA027DA1F9DC8740018E4AE /* GuanruAppDemo */,
+				FCA027F21F9DC8740018E4AE /* GuanruAppDemoTests */,
+				FCA027FD1F9DC8750018E4AE /* GuanruAppDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FCA027D91F9DC8740018E4AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA027EB1F9DC8740018E4AE /* LaunchScreen.storyboard in Resources */,
+				FCA027E81F9DC8740018E4AE /* Assets.xcassets in Resources */,
+				FCA027E61F9DC8740018E4AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027F11F9DC8740018E4AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027FC1F9DC8750018E4AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FCA027D71F9DC8740018E4AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA027E31F9DC8740018E4AE /* ViewController.m in Sources */,
+				FCA027EE1F9DC8740018E4AE /* main.m in Sources */,
+				FCA027E01F9DC8740018E4AE /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027EF1F9DC8740018E4AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA027F81F9DC8750018E4AE /* GuanruAppDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA027FA1F9DC8750018E4AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA028031F9DC8750018E4AE /* GuanruAppDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FCA027F51F9DC8740018E4AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FCA027DA1F9DC8740018E4AE /* GuanruAppDemo */;
+			targetProxy = FCA027F41F9DC8740018E4AE /* PBXContainerItemProxy */;
+		};
+		FCA028001F9DC8750018E4AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FCA027DA1F9DC8740018E4AE /* GuanruAppDemo */;
+			targetProxy = FCA027FF1F9DC8750018E4AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FCA027E41F9DC8740018E4AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCA027E51F9DC8740018E4AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FCA027E91F9DC8740018E4AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCA027EA1F9DC8740018E4AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FCA028051F9DC8750018E4AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FCA028061F9DC8750018E4AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FCA028081F9DC8750018E4AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FCA028091F9DC8750018E4AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FCA0280B1F9DC8750018E4AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuanruAppDemo.app/GuanruAppDemo";
+			};
+			name = Debug;
+		};
+		FCA0280C1F9DC8750018E4AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuanruAppDemo.app/GuanruAppDemo";
+			};
+			name = Release;
+		};
+		FCA0280E1F9DC8750018E4AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GuanruAppDemo;
+			};
+			name = Debug;
+		};
+		FCA0280F1F9DC8750018E4AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GuanruAppDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.GuanruAppDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GuanruAppDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FCA027D61F9DC8730018E4AE /* Build configuration list for PBXProject "GuanruAppDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA028051F9DC8750018E4AE /* Debug */,
+				FCA028061F9DC8750018E4AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA028071F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA028081F9DC8750018E4AE /* Debug */,
+				FCA028091F9DC8750018E4AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA0280A1F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA0280B1F9DC8750018E4AE /* Debug */,
+				FCA0280C1F9DC8750018E4AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA0280D1F9DC8750018E4AE /* Build configuration list for PBXNativeTarget "GuanruAppDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA0280E1F9DC8750018E4AE /* Debug */,
+				FCA0280F1F9DC8750018E4AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FCA027D31F9DC8730018E4AE /* Project object */;
+}
