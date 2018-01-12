@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>商家名称</string>
+		<key>imageName</key>
+		<string>输入商户名称</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>中介名称</string>
+		<key>imageName</key>
+		<string>输入中介名称</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>支付宝</string>
+		<key>imageName</key>
+		<string>输入支付宝账号</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>供码费率</string>
+		<key>imageName</key>
+		<string>供码费率(%)不能大于1.2</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>一级分润</string>
+		<key>imageName</key>
+		<string>费率(%)小于供码费率</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>最小额度</string>
+		<key>imageName</key>
+		<string>可以使用花呗的最小额度</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>最大额度</string>
+		<key>imageName</key>
+		<string>可以使用花呗的最大额度</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>每日限额</string>
+		<key>imageName</key>
+		<string>每日可刷金额</string>
+	</dict>
+</array>
+</plist>

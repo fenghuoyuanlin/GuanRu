@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>老板</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>员工</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>老板</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>1家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>老板</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>员工</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>员工</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>员工</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>老板</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>1家</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>员工</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>info</key>
+		<string>直接0家  间接0家</string>
+		<key>content</key>
+		<string>0家</string>
+	</dict>
+</array>
+</plist>

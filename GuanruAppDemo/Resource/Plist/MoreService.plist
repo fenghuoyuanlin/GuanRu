@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>平安保险免费送</string>
+		<key>imageName</key>
+		<string>XXZX_xiaomei</string>
+		<key>message</key>
+		<string>参与小调查，100万元交通意外险免费尊享哦，赶快来订购吧</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>兴业证券</string>
+		<key>imageName</key>
+		<string>XXZX_wuliu</string>
+		<key>message</key>
+		<string>用心成就专业，专业成就未来</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>平安证券</string>
+		<key>imageName</key>
+		<string>XXZX_shangcheng</string>
+		<key>message</key>
+		<string>“急速开户，快人一步，智能投顾，如有神助哦，赶紧下卡白”</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>   姓名</string>
+		<key>imageName</key>
+		<string>请输入您的真实姓名</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>身份证号</string>
+		<key>imageName</key>
+		<string>请输入您的身份证号码</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>注册手机</string>
+		<key>imageName</key>
+		<string>请输入注册手机号</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>登录密码</string>
+		<key>imageName</key>
+		<string>请输入登录密码</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>原支付宝</string>
+		<key>imageName</key>
+		<string>请输入原支付宝账号</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>新支付宝</string>
+		<key>imageName</key>
+		<string>请输入新支付宝账号</string>
+	</dict>
+</array>
+</plist>
