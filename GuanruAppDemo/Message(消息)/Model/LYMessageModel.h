@@ -10,10 +10,10 @@
 
 @interface LYMessageModel : NSObject
 //标题
-@property(nonatomic, strong) NSString *title;
-//图片
-@property(nonatomic, strong) NSString *imageName;
-//消息
-@property(nonatomic, strong) NSString *message;
+@property(nonatomic, strong) NSString *Title;
+//内容
+@property(nonatomic, strong) NSString *Content;
+//时间
+@property(nonatomic, strong) NSString *Senddata;
 
 @end

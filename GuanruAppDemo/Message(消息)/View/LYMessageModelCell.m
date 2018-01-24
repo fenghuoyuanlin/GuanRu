@@ -20,15 +20,20 @@
 // Others
 
 @interface LYMessageModelCell ()
-//标题
-@property(nonatomic, strong) UILabel *titleLabel;
 //图片
 @property(nonatomic, strong) UIImageView *imageNameView;
+//标题
+@property(nonatomic, strong) UILabel *titleLabel;
+//消息
+@property(nonatomic, strong) UILabel *messageLabel;
+//日期时间
+@property(nonatomic, strong) UILabel *dateLabel;
 
 //底部分割线
 @property(nonatomic, strong) UIView *cellLine;
 
 @end
+
 @implementation LYMessageModelCell
 
 #pragma mark - inital
@@ -52,6 +57,7 @@
     [self addSubview:_messageLabel];
     
     _imageNameView = [[UIImageView alloc] init];
+    _imageNameView.image = [UIImage imageNamed:@"公告"];
     [self addSubview:_imageNameView];
     
     _dateLabel = [[UILabel alloc] init];
@@ -62,8 +68,6 @@
     _cellLine.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
     [self addSubview:_cellLine];
     
-    _imageNameView.image = [UIImage imageNamed:@"公告"];
-    _titleLabel.text = @"重要公告";
 }
 
 #pragma mark - 布局
@@ -78,8 +82,14 @@
         make.size.equalTo(CGSizeMake(44, 44));
     }];
     
+    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.titleLabel.centerY);
+        make.right.equalTo(-4*DCMargin);
+    }];
+    
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_imageNameView.right).offset(15);
+        make.right.equalTo(_dateLabel.left).offset(-DCMargin);
         make.top.equalTo(DCMargin);
     }];
     
@@ -89,10 +99,6 @@
         make.right.equalTo(-4*DCMargin);
     }];
     
-    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.titleLabel.centerY);
-        make.right.equalTo(-4*DCMargin);
-    }];
     
     [_cellLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_titleLabel.left);
@@ -108,8 +114,9 @@
 {
     _messageItem = messageItem;
     _imageNameView.image = [UIImage imageNamed:@"公告"];
-    _titleLabel.text = @"重要公告";
-    _messageLabel.text = messageItem.message;
+    _titleLabel.text = messageItem.Title;
+    _messageLabel.text = messageItem.Content;
+    _dateLabel.text = [DCSpeedy timeStampToStr:messageItem.Senddata];
     
 }
 @end

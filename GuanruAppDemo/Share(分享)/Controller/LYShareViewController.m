@@ -32,8 +32,15 @@
 @property(nonatomic, strong) UITableView *tableView;
 
 @property(nonatomic, strong) NSMutableArray<LYShareItem *> *messageArr;
-
+//当前费率
 @property(nonatomic, strong) NSString *currentRate;
+//最大费率
+@property(nonatomic, strong) NSString *maxRate;
+//最小费率
+@property(nonatomic, strong) NSString *minRate;
+//间隔
+@property(nonatomic, strong) NSString *interval;
+
 
 @end
 
@@ -67,7 +74,12 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
-    [self setUpGetRate];
+    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+    if (str)
+    {
+        [self setUpGetRate];
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -99,24 +111,39 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
 -(void)setUpGetRate
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
-    NSDictionary *dic = @{
-                          @"agentid": userid
-                          };
-    [AFOwnerHTTPSessionManager getAddToken:AgentRate Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+    [dic setValue:userid forKey:@"agentid"];
+//    [AFOwnerHTTPSessionManager getAddToken:AgentRate Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//        NSString *code = responseObject[@"code"];
+//        if ([code isEqualToString:@"0000"])
+//        {
+//            NSString *rate = responseObject[@"Data"][@"AgentRate"];
+//            NSString *str = [NSString stringWithFormat:@"%lf", [rate doubleValue] * 100];
+//            NSString *fl = [DCSpeedy changeFloat:str];
+//            _currentRate = fl;
+//            NSLog(@"%@", _currentRate);
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@", error);
+//
+//    }];
+    
+    [AFOwnerHTTPSessionManager getAddToken:GETChildAgentArea Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
         NSString *code = responseObject[@"code"];
         if ([code isEqualToString:@"0000"])
         {
-            NSString *rate = responseObject[@"Data"][@"AgentRate"];
-            NSString *str = [NSString stringWithFormat:@"%lf", [rate doubleValue] * 100];
-            NSString *fl = [DCSpeedy changeFloat:str];
-            _currentRate = fl;
-            NSLog(@"%@", _currentRate);
+            _maxRate = responseObject[@"Data"][@"max"];
+            _minRate = responseObject[@"Data"][@"min"];
+            _interval = responseObject[@"Data"][@"interval"];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
         
     }];
+    
+    
 }
 
 #pragma mark - 消息数据
@@ -184,7 +211,16 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
     }
     else if (indexPath.row == 0)
     {
-        [self setUpChooseRate];
+        NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+        if (str)
+        {
+            [self setUpChooseRate];
+        }
+        else
+        {
+            [DCSpeedy alertMes:@"请您先登录哦"];
+        }
+        
     }
 
 }
@@ -192,34 +228,23 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
 -(void)setUpChooseRate
 {
     NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
-    double rate = [_currentRate doubleValue];
-    if (rate >= 5)
+//    double rate = [_currentRate doubleValue];
+    
+    for (double i = [_minRate doubleValue] * 100 + [_interval doubleValue]; i <= [_maxRate doubleValue] * 100; i = i + [_interval doubleValue])
     {
-        [DCSpeedy alertMes:@"暂无权限"];
-    }
-    else
-    {
-        if (rate < 2.0)
-        {
-            rate = 1.5;
-        }
-        for (double i = rate + 0.5; i <= 5.0; i = i + 0.5)
-        {
-            NSString *pp = [NSString stringWithFormat:@"%lf", i];
-            NSString *str = [DCSpeedy changeFloat:pp];
-            NSLog(@"%@", str);
-            [mutableRate addObject:str];
-        }
-        
-        __weak typeof(self) weakSelf = self;
-        [BRStringPickerView showStringPickerWithTitle:@"下级代理商费率" dataSource:mutableRate defaultSelValue:mutableRate[0] isAutoSelect:NO resultBlock:^(id selectValue) {
-            NSLog(@"%@", selectValue);
-            LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
-            friendVC.rateStr = selectValue;
-            [weakSelf.navigationController pushViewController:friendVC animated:YES];
-        }];
+        NSString *pp = [NSString stringWithFormat:@"%lf", i];
+        NSString *str = [DCSpeedy changeFloat:pp];
+        NSLog(@"%@", str);
+        [mutableRate addObject:str];
     }
     
+    __weak typeof(self) weakSelf = self;
+    [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:mutableRate defaultSelValue:mutableRate[0] isAutoSelect:NO resultBlock:^(id selectValue) {
+        NSLog(@"%@", selectValue);
+        LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
+        friendVC.rateStr = selectValue;
+        [weakSelf.navigationController pushViewController:friendVC animated:YES];
+    }];
     
 }
 

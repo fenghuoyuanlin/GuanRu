@@ -87,7 +87,7 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
     [self.view addSubview:_bottomView];
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(0);
+        make.bottom.equalTo(-KSafeBarHeight);
         make.left.right.equalTo(0);
         make.height.equalTo(45);
     }];
@@ -104,7 +104,7 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
     [_bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(15);
         make.top.equalTo(_bottomView.top).offset(7.5);
-        make.bottom.equalTo(-7.5);
+        make.bottom.equalTo(_bottomView.bottom).offset(-7.5);
         make.right.equalTo(-15);
     }];
 }
@@ -217,7 +217,6 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 
 
 #pragma mark - 打开或者删除
-
 -(void)openUrlWithShopid:(NSString *)shopid andNsintenger:(NSInteger )row
 {
     NSDictionary *dic = @{

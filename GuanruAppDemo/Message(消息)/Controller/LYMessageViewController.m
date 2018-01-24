@@ -27,7 +27,7 @@
 
 @property(nonatomic, strong) UITableView *tableView;
 
-@property(nonatomic, strong) NSMutableArray *messageArr;
+@property(nonatomic, strong) NSMutableArray<LYMessageModel *> *messageArr;
 
 @end
 
@@ -58,14 +58,23 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    [self setUpRefreshHeader];
+    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+    if (str)
+    {
+        [self setUpRefreshHeader];
+    }
+    else
+    {
+        [DCSpeedy alertMes:@"主人您还没有登录哦，暂时不能查看"];
+    }
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpBase];
 //    [self setUpData];
-    [self setUpNav];
+//    [self setUpNav];
 }
 
 #pragma mark - initial
@@ -90,9 +99,31 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
 #pragma mark - 消息数据
 -(void)setUpData
 {
-    NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"mutableArr"];
-    _messageArr = [NSMutableArray arrayWithArray:arr];
-    NSLog(@"%@", _messageArr);
+    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+    [dic setValue:userid forKey:@"agentid"];
+    NSLog(@"%@", dic);
+    __weak typeof(self) weakSelf = self;
+    [AFOwnerHTTPSessionManager getAddToken:GetAgentMessage Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+        NSString *code = responseObject[@"code"];
+        if ([code isEqualToString:@"0000"])
+        {
+            NSArray *arr = [responseObject objectForKey:@"Data"];
+            if (arr.count == 0)
+            {
+                [DCSpeedy alertMes:@"暂无消息"];
+            }
+            else
+            {
+                _messageArr = [LYMessageModel mj_objectArrayWithKeyValuesArray:arr];
+                [weakSelf.tableView reloadData];
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+        
+    }];
 }
 
 #pragma mark - 上拉和下拉刷新
@@ -104,16 +135,8 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
         
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"mutableArr"];
-            _messageArr = [NSMutableArray arrayWithArray:arr];
-            if (_messageArr.count == 0)
-            {
-                [DCSpeedy alertMes:@"暂无消息"];
-            }
-            else
-            {
-               [weakSelf.tableView reloadData];
-            }
+            [weakSelf setUpData];
+            [weakSelf.tableView reloadData];
             // 结束刷新
             [weakSelf.tableView.mj_header endRefreshing];
         });
@@ -149,9 +172,7 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     LYMessageModelCell *cell = [tableView dequeueReusableCellWithIdentifier:LYMessageModelCellID];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.messageLabel.text = _messageArr[_messageArr.count - indexPath.row - 1][@"mesStr"];
-    cell.dateLabel.text = _messageArr[_messageArr.count - indexPath.row - 1][@"date"];
-    
+    cell.messageItem = _messageArr[indexPath.row];
     return cell;
 }
 
@@ -165,7 +186,7 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LYMesDetailController *detailVC = [[LYMesDetailController alloc] init];
-    detailVC.detailStr = _messageArr[_messageArr.count - indexPath.row - 1][@"mesStr"];
+    detailVC.detailStr = _messageArr[indexPath.row].Content;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

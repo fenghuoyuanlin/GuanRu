@@ -10,7 +10,7 @@
 // Controllers
 
 // Models
-
+#import "LYCardItem.h"
 // Views
 
 // Vendors
@@ -20,16 +20,12 @@
 // Others
 
 @interface LYRecommendCell ()
-
+//标题
 @property(nonatomic, strong) UILabel *titleLabel;
-
-@property(nonatomic, strong) UIImageView *imgView;
-
+//详情
 @property(nonatomic, strong) UILabel *infoLabel;
-
-@property(nonatomic ,strong) UILabel *desLabel;
-
-@property(nonatomic, strong) UIImageView *infoImgView;
+//图片
+@property(nonatomic, strong) UIImageView *imgView;
 
 @end
 
@@ -48,85 +44,93 @@
 
 -(void)setUpUI
 {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = RGB(241, 243, 255);
+    self.layer.cornerRadius = 10.0;
+    self.layer.masksToBounds = YES;
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.text = @"商户入驻";
+    _titleLabel.font = PFR15Font;
+    if (iphone5)
+    {
+        _titleLabel.font = PFR13Font;
+    }
+    else
+    {
+        _titleLabel.font = PFR15Font;
+    }
     [self addSubview:_titleLabel];
-    
-    _imgView = [[UIImageView alloc] init];
-    _imgView.image = [UIImage imageNamed:@"钱袋"];
-    [self addSubview:_imgView];
     
     _infoLabel = [[UILabel alloc] init];
     if (iphone5)
     {
-        _infoLabel.font = PFR14Font;
+        _infoLabel.font = PFR10Font;
     }
-    _infoLabel.textColor = RGB(248, 54, 19);
-    _infoLabel.text = @"推码代理，赚钱给你";
+    else
+    {
+        _infoLabel.font = PFR13Font;
+    }
+    _infoLabel.textColor = RGB(131, 133, 135); 
     [self addSubview:_infoLabel];
     
-    _desLabel = [[UILabel alloc] init];
-    _desLabel.textColor = RGB(156, 156, 156);
-    _desLabel.text = @"推广下级代理，赚钱一步到位";
-    if (iphone5)
-    {
-        _desLabel.font = PFR14Font;
-    }
-    [self addSubview:_desLabel];
-    
-    _infoImgView = [[UIImageView alloc] init];
-    _infoImgView.image = [UIImage imageNamed:@"立即加入"];
-    [self addSubview:_infoImgView];
+    _imgView = [[UIImageView alloc] init];
+    [self addSubview:_imgView];
 
 }
 
 #pragma mark - 布局
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     
-    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(DCMargin);
-    }];
-    
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_titleLabel.bottom).offset(DCMargin);
-        make.left.equalTo(40);
+        make.centerY.equalTo(self.centerY);
+        make.right.equalTo(-5);
         if (iphone5)
         {
-            make.size.equalTo(CGSizeMake(70, 70));
+            make.size.equalTo(CGSizeMake(40, 40));
         }
         else
         {
-            make.size.equalTo(CGSizeMake(100, 100));
+            make.size.equalTo(CGSizeMake(50, 50));
         }
     }];
     
-    [_desLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_imgView.centerY);
-        make.left.equalTo(_imgView.right).offset(15);
+    
+    
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (iphone5)
+        {
+            make.left.equalTo(DCMargin);;
+        }
+        else
+        {
+            make.left.equalTo(2 * DCMargin);;
+        }
+        make.top.equalTo(_imgView.top).offset(-5);
     }];
     
     [_infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_desLabel.top).offset(-DCMargin);
-        make.left.equalTo(_desLabel.left);
-    }];
-    
-    [_infoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_infoLabel.left);
-        make.top.equalTo(_desLabel.bottom).offset(DCMargin);
-        make.size.equalTo(CGSizeMake(80, 30));
+        make.top.equalTo(_titleLabel.bottom).offset(DCMargin);
+        if (iphone5)
+        {
+            make.left.equalTo(DCMargin);;
+        }
+        else
+        {
+            make.left.equalTo(2 * DCMargin);;
+        }
     }];
     
 }
 
 #pragma mark - Setter Getter Methods
--(void)setImgUrl:(NSString *)imgUrl
+-(void)setCardItem:(LYCardItem *)cardItem
 {
-    _imgUrl = imgUrl;
-    
+    _cardItem = cardItem;
+    _titleLabel.text = cardItem.gridTitle;
+    _infoLabel.text = cardItem.info;
+    _imgView.image = [UIImage imageNamed:cardItem.iconImage];
 }
 
 @end

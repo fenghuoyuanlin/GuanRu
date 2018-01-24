@@ -74,7 +74,7 @@
 		FC3376261FA6EF840030E39B /* LYAccountHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3376251FA6EF840030E39B /* LYAccountHeader.m */; };
 		FC33762D1FA6FC880030E39B /* LYRateItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC33762B1FA6FC880030E39B /* LYRateItemCell.m */; };
 		FC33762E1FA6FC880030E39B /* LYRateItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC33762C1FA6FC880030E39B /* LYRateItemCell.xib */; };
-		FC3376301FA71B140030E39B /* RateItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC33762F1FA71B130030E39B /* RateItem.plist */; };
+		FC3376301FA71B140030E39B /* CardItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC33762F1FA71B130030E39B /* CardItem.plist */; };
 		FC3376341FA7220D0030E39B /* RateItem2.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC3376331FA7220D0030E39B /* RateItem2.plist */; };
 		FC3376361FA722AB0030E39B /* RateItem3.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC3376351FA722AB0030E39B /* RateItem3.plist */; };
 		FC3376381FA7231B0030E39B /* RateItem4.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC3376371FA7231B0030E39B /* RateItem4.plist */; };
@@ -108,6 +108,9 @@
 		FC3F84471FF34DD50074786C /* OpenShare+Weibo.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F843E1FF34DD50074786C /* OpenShare+Weibo.m */; };
 		FC3F84481FF34DD50074786C /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F84401FF34DD50074786C /* OpenShare+Weixin.m */; };
 		FC3F84491FF34DD50074786C /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F84421FF34DD50074786C /* OpenShare.m */; };
+		FC40256E201586560090A7EA /* LYTitleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40256D201586560090A7EA /* LYTitleHeaderView.m */; };
+		FC4025732015C3000090A7EA /* DWPublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4025702015C3000090A7EA /* DWPublishButton.m */; };
+		FC4025742015C3000090A7EA /* DWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4025722015C3000090A7EA /* DWTabBar.m */; };
 		FC410B671F9EE2050034B010 /* LYWalletItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC410B661F9EE2050034B010 /* LYWalletItem.m */; };
 		FC410B6A1F9EE21D0034B010 /* LYMoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC410B691F9EE21D0034B010 /* LYMoreItem.m */; };
 		FC410B6D1F9EE2600034B010 /* LYWalletItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC410B6C1F9EE2600034B010 /* LYWalletItemCell.m */; };
@@ -272,11 +275,18 @@
 		FCA0298E1F9DEA2B0018E4AE /* LYMyselfHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0298D1F9DEA2B0018E4AE /* LYMyselfHeader.m */; };
 		FCA029901F9DEFF00018E4AE /* Message.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCA0298F1F9DEFF00018E4AE /* Message.plist */; };
 		FCB77A751FA9B64500789DDE /* LYUIBLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB77A741FA9B64500789DDE /* LYUIBLButton.m */; };
+		FCC9B8792016CE57003D07C1 /* LYCardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC9B8782016CE57003D07C1 /* LYCardItem.m */; };
+		FCC9B88020172414003D07C1 /* LYServiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC9B87F20172414003D07C1 /* LYServiceItem.m */; };
+		FCC9B8832017243C003D07C1 /* LYServiceItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC9B8822017243C003D07C1 /* LYServiceItemController.m */; };
+		FCC9B8862017245E003D07C1 /* LYServiceItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC9B8852017245E003D07C1 /* LYServiceItemCell.m */; };
+		FCC9B88A20172C6C003D07C1 /* ServiceItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCC9B88920172C6C003D07C1 /* ServiceItem.plist */; };
 		FCD6AE331FA2BBD600391082 /* LYBankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD6AE321FA2BBD600391082 /* LYBankCardController.m */; };
 		FCD6AE3A1FA2C0CD00391082 /* LYRelationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD6AE391FA2C0CD00391082 /* LYRelationController.m */; };
 		FCDDAA9B1FDA40D30098C721 /* LYBillDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDDAA9A1FDA40D30098C721 /* LYBillDetail.m */; };
 		FCDDAA9E1FDA5F1F0098C721 /* LYChangePhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDDAA9D1FDA5F1F0098C721 /* LYChangePhoneController.m */; };
 		FCDDAAA21FDA60C70098C721 /* ChangPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCDDAAA11FDA60C70098C721 /* ChangPhone.plist */; };
+		FCE1797220181EC2003AEAF2 /* LYExceedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE1797120181EC2003AEAF2 /* LYExceedCell.m */; };
+		FCE1797520183AF9003AEAF2 /* LYBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE1797420183AF9003AEAF2 /* LYBottomCell.m */; };
 		FCF7FF1B1FFF0A4B001F4BEF /* UIView+SGPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF7FF0F1FFF0A4B001F4BEF /* UIView+SGPagingView.m */; };
 		FCF7FF1C1FFF0A4B001F4BEF /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF7FF121FFF0A4B001F4BEF /* SGPageContentScrollView.m */; };
 		FCF7FF1D1FFF0A4B001F4BEF /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF7FF141FFF0A4B001F4BEF /* SGPageContentView.m */; };
@@ -428,7 +438,7 @@
 		FC33762A1FA6FC880030E39B /* LYRateItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYRateItemCell.h; sourceTree = "<group>"; };
 		FC33762B1FA6FC880030E39B /* LYRateItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYRateItemCell.m; sourceTree = "<group>"; };
 		FC33762C1FA6FC880030E39B /* LYRateItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LYRateItemCell.xib; sourceTree = "<group>"; };
-		FC33762F1FA71B130030E39B /* RateItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RateItem.plist; sourceTree = "<group>"; };
+		FC33762F1FA71B130030E39B /* CardItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardItem.plist; sourceTree = "<group>"; };
 		FC3376331FA7220D0030E39B /* RateItem2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RateItem2.plist; sourceTree = "<group>"; };
 		FC3376351FA722AB0030E39B /* RateItem3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RateItem3.plist; sourceTree = "<group>"; };
 		FC3376371FA7231B0030E39B /* RateItem4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RateItem4.plist; sourceTree = "<group>"; };
@@ -492,6 +502,12 @@
 		FC3F84411FF34DD50074786C /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
 		FC3F84421FF34DD50074786C /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
 		FC3F84431FF34DD50074786C /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
+		FC40256C201586560090A7EA /* LYTitleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTitleHeaderView.h; sourceTree = "<group>"; };
+		FC40256D201586560090A7EA /* LYTitleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTitleHeaderView.m; sourceTree = "<group>"; };
+		FC40256F2015C3000090A7EA /* DWPublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPublishButton.h; sourceTree = "<group>"; };
+		FC4025702015C3000090A7EA /* DWPublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPublishButton.m; sourceTree = "<group>"; };
+		FC4025712015C3000090A7EA /* DWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTabBar.h; sourceTree = "<group>"; };
+		FC4025722015C3000090A7EA /* DWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTabBar.m; sourceTree = "<group>"; };
 		FC410B651F9EE2050034B010 /* LYWalletItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWalletItem.h; sourceTree = "<group>"; };
 		FC410B661F9EE2050034B010 /* LYWalletItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWalletItem.m; sourceTree = "<group>"; };
 		FC410B681F9EE21D0034B010 /* LYMoreItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMoreItem.h; sourceTree = "<group>"; };
@@ -813,6 +829,15 @@
 		FCA0298F1F9DEFF00018E4AE /* Message.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Message.plist; sourceTree = "<group>"; };
 		FCB77A731FA9B64500789DDE /* LYUIBLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUIBLButton.h; sourceTree = "<group>"; };
 		FCB77A741FA9B64500789DDE /* LYUIBLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUIBLButton.m; sourceTree = "<group>"; };
+		FCC9B8772016CE57003D07C1 /* LYCardItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYCardItem.h; sourceTree = "<group>"; };
+		FCC9B8782016CE57003D07C1 /* LYCardItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYCardItem.m; sourceTree = "<group>"; };
+		FCC9B87E20172414003D07C1 /* LYServiceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYServiceItem.h; sourceTree = "<group>"; };
+		FCC9B87F20172414003D07C1 /* LYServiceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYServiceItem.m; sourceTree = "<group>"; };
+		FCC9B8812017243C003D07C1 /* LYServiceItemController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYServiceItemController.h; sourceTree = "<group>"; };
+		FCC9B8822017243C003D07C1 /* LYServiceItemController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYServiceItemController.m; sourceTree = "<group>"; };
+		FCC9B8842017245E003D07C1 /* LYServiceItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYServiceItemCell.h; sourceTree = "<group>"; };
+		FCC9B8852017245E003D07C1 /* LYServiceItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYServiceItemCell.m; sourceTree = "<group>"; };
+		FCC9B88920172C6C003D07C1 /* ServiceItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiceItem.plist; sourceTree = "<group>"; };
 		FCD6AE311FA2BBD600391082 /* LYBankCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBankCardController.h; sourceTree = "<group>"; };
 		FCD6AE321FA2BBD600391082 /* LYBankCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBankCardController.m; sourceTree = "<group>"; };
 		FCD6AE381FA2C0CD00391082 /* LYRelationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYRelationController.h; sourceTree = "<group>"; };
@@ -822,6 +847,10 @@
 		FCDDAA9C1FDA5F1F0098C721 /* LYChangePhoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChangePhoneController.h; sourceTree = "<group>"; };
 		FCDDAA9D1FDA5F1F0098C721 /* LYChangePhoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChangePhoneController.m; sourceTree = "<group>"; };
 		FCDDAAA11FDA60C70098C721 /* ChangPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChangPhone.plist; sourceTree = "<group>"; };
+		FCE1797020181EC2003AEAF2 /* LYExceedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYExceedCell.h; sourceTree = "<group>"; };
+		FCE1797120181EC2003AEAF2 /* LYExceedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYExceedCell.m; sourceTree = "<group>"; };
+		FCE1797320183AF9003AEAF2 /* LYBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBottomCell.h; sourceTree = "<group>"; };
+		FCE1797420183AF9003AEAF2 /* LYBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBottomCell.m; sourceTree = "<group>"; };
 		FCF7FF0E1FFF0A4B001F4BEF /* UIView+SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGPagingView.h"; sourceTree = "<group>"; };
 		FCF7FF0F1FFF0A4B001F4BEF /* UIView+SGPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGPagingView.m"; sourceTree = "<group>"; };
 		FCF7FF111FFF0A4B001F4BEF /* SGPageContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageContentScrollView.h; sourceTree = "<group>"; };
@@ -1842,6 +1871,8 @@
 				FC410B661F9EE2050034B010 /* LYWalletItem.m */,
 				FC410B681F9EE21D0034B010 /* LYMoreItem.h */,
 				FC410B691F9EE21D0034B010 /* LYMoreItem.m */,
+				FCC9B8772016CE57003D07C1 /* LYCardItem.h */,
+				FCC9B8782016CE57003D07C1 /* LYCardItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1851,8 +1882,12 @@
 			children = (
 				FC410B6B1F9EE2600034B010 /* LYWalletItemCell.h */,
 				FC410B6C1F9EE2600034B010 /* LYWalletItemCell.m */,
+				FCE1797020181EC2003AEAF2 /* LYExceedCell.h */,
+				FCE1797120181EC2003AEAF2 /* LYExceedCell.m */,
 				FC410B6E1F9EE2880034B010 /* LYRecommendCell.h */,
 				FC410B6F1F9EE2880034B010 /* LYRecommendCell.m */,
+				FCE1797320183AF9003AEAF2 /* LYBottomCell.h */,
+				FCE1797420183AF9003AEAF2 /* LYBottomCell.m */,
 				FC410B711F9EE2D60034B010 /* LYCycleCell.h */,
 				FC410B721F9EE2D60034B010 /* LYCycleCell.m */,
 				FC410B741F9EE2F00034B010 /* LYMoreItemCell.h */,
@@ -1861,6 +1896,8 @@
 				FC410B7E1F9EEB450034B010 /* LYWalletHeader.m */,
 				FCB77A731FA9B64500789DDE /* LYUIBLButton.h */,
 				FCB77A741FA9B64500789DDE /* LYUIBLButton.m */,
+				FC40256C201586560090A7EA /* LYTitleHeaderView.h */,
+				FC40256D201586560090A7EA /* LYTitleHeaderView.m */,
 				FC5078631FFE16D100702116 /* LYTopLineFootView.h */,
 				FC5078641FFE16D300702116 /* LYTopLineFootView.m */,
 				FC5078661FFE16DB00702116 /* LYNumberScrollView.h */,
@@ -2191,6 +2228,7 @@
 			isa = PBXGroup;
 			children = (
 				FC3851D41FF21E5C00AA7C3E /* GuanruAppDemo.entitlements */,
+				FCC9B87A20172374003D07C1 /* Services(客服) */,
 				FCA028101F9DCA2F0018E4AE /* AppDelegate */,
 				FCA0297A1F9DE1130018E4AE /* Resource */,
 				FCA028141F9DCA5F0018E4AE /* Expand(扩展) */,
@@ -2679,6 +2717,10 @@
 		FCA029461F9DCBD00018E4AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FC40256F2015C3000090A7EA /* DWPublishButton.h */,
+				FC4025702015C3000090A7EA /* DWPublishButton.m */,
+				FC4025712015C3000090A7EA /* DWTabBar.h */,
+				FC4025722015C3000090A7EA /* DWTabBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2873,6 +2915,7 @@
 		FCA0297B1F9DE1130018E4AE /* Plist */ = {
 			isa = PBXGroup;
 			children = (
+				FCC9B88920172C6C003D07C1 /* ServiceItem.plist */,
 				FC5078791FFE515200702116 /* AliData.plist */,
 				FC3700761FE8BA6500827EA3 /* EnterData.plist */,
 				FC568EAA2001C1ED00400EE7 /* Documents.plist */,
@@ -2890,7 +2933,7 @@
 				FC3376371FA7231B0030E39B /* RateItem4.plist */,
 				FC3376351FA722AB0030E39B /* RateItem3.plist */,
 				FC3376331FA7220D0030E39B /* RateItem2.plist */,
-				FC33762F1FA71B130030E39B /* RateItem.plist */,
+				FC33762F1FA71B130030E39B /* CardItem.plist */,
 				FC3376201FA6BA670030E39B /* Account.plist */,
 				FC410B7B1F9EE43E0034B010 /* Grid.plist */,
 				FC410B771F9EE35B0034B010 /* WalletGrid.plist */,
@@ -2902,6 +2945,43 @@
 				FC1B143E1FC3D86C003814DB /* FillData.plist */,
 			);
 			path = Plist;
+			sourceTree = "<group>";
+		};
+		FCC9B87A20172374003D07C1 /* Services(客服) */ = {
+			isa = PBXGroup;
+			children = (
+				FCC9B87B20172374003D07C1 /* Controller */,
+				FCC9B87C20172374003D07C1 /* Model */,
+				FCC9B87D20172374003D07C1 /* View */,
+			);
+			path = "Services(客服)";
+			sourceTree = "<group>";
+		};
+		FCC9B87B20172374003D07C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FCC9B8812017243C003D07C1 /* LYServiceItemController.h */,
+				FCC9B8822017243C003D07C1 /* LYServiceItemController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FCC9B87C20172374003D07C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FCC9B87E20172414003D07C1 /* LYServiceItem.h */,
+				FCC9B87F20172414003D07C1 /* LYServiceItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FCC9B87D20172374003D07C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FCC9B8842017245E003D07C1 /* LYServiceItemCell.h */,
+				FCC9B8852017245E003D07C1 /* LYServiceItemCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FCD6AE2D1FA2BBBE00391082 /* BankCard */ = {
@@ -3084,6 +3164,9 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -3140,6 +3223,7 @@
 				FCA029281F9DCA5F0018E4AE /* mask.jpg in Resources */,
 				FC3122CE1FA85CD900F16C09 /* LinkItem.plist in Resources */,
 				FCA029171F9DCA5F0018E4AE /* ScanResultViewController.xib in Resources */,
+				FCC9B88A20172C6C003D07C1 /* ServiceItem.plist in Resources */,
 				FCA029271F9DCA5F0018E4AE /* line.png in Resources */,
 				FC36EC231FC2BEBC0027645F /* RegisterreNote.plist in Resources */,
 				FC410B781F9EE35B0034B010 /* WalletGrid.plist in Resources */,
@@ -3163,7 +3247,7 @@
 				FCA0291B1F9DCA5F0018E4AE /* sdRefeshView_arrow@2x.png in Resources */,
 				FC568EAB2001C1ED00400EE7 /* Documents.plist in Resources */,
 				FC3376211FA6BA670030E39B /* Account.plist in Resources */,
-				FC3376301FA71B140030E39B /* RateItem.plist in Resources */,
+				FC3376301FA71B140030E39B /* CardItem.plist in Resources */,
 				FC3376341FA7220D0030E39B /* RateItem2.plist in Resources */,
 				FCA029291F9DCA5F0018E4AE /* restrictedshine.tiff in Resources */,
 			);
@@ -3321,14 +3405,17 @@
 				FCA0291A1F9DCA5F0018E4AE /* UIAlertView+LBXAlertAction.m in Sources */,
 				FCF7FF1F1FFF0A4B001F4BEF /* SGPageTitleViewConfigure.m in Sources */,
 				FC3F84461FF34DD50074786C /* OpenShare+Renren.m in Sources */,
+				FCC9B8862017245E003D07C1 /* LYServiceItemCell.m in Sources */,
 				FC8A70E31FCBB3FC00F938DF /* LYFacePayCell.m in Sources */,
 				FC1DABCD1FC7EE0B0046ADDD /* SGQRCodeAlbumManager.m in Sources */,
 				FCA029261F9DCA5F0018E4AE /* XWTransitionAnimator.m in Sources */,
+				FCE1797520183AF9003AEAF2 /* LYBottomCell.m in Sources */,
 				FC1A9B2E1FA974C400EE8663 /* LYCreditLoansController.m in Sources */,
 				FCA029661F9DCC550018E4AE /* LYShareViewController.m in Sources */,
 				FC50786B1FFE408D00702116 /* LYLoginCell.m in Sources */,
 				FC33CD551FD8E0E1007D603C /* Base64.m in Sources */,
 				FC8A70F61FCBFD9F00F938DF /* LYBillSearchCell.m in Sources */,
+				FCE1797220181EC2003AEAF2 /* LYExceedCell.m in Sources */,
 				FCA028F81F9DCA5F0018E4AE /* WJYAlertView.m in Sources */,
 				FCA028F91F9DCA5F0018E4AE /* JKDBHelper.m in Sources */,
 				FCA0290C1F9DCA5F0018E4AE /* LBXScanResult.m in Sources */,
@@ -3360,7 +3447,9 @@
 				FCA029121F9DCA5F0018E4AE /* LBXZXCapture.m in Sources */,
 				FC568ECA2001C82600400EE7 /* NSObject+YYModel.m in Sources */,
 				FC568EA12001B87F00400EE7 /* LYDocumentItem.m in Sources */,
+				FC4025732015C3000090A7EA /* DWPublishButton.m in Sources */,
 				FC3F84351FF331C80074786C /* LYShareSocialCell.m in Sources */,
+				FC40256E201586560090A7EA /* LYTitleHeaderView.m in Sources */,
 				FCA028F71F9DCA5F0018E4AE /* UIPlaceHolderTextView.m in Sources */,
 				FCA028EB1F9DCA5F0018E4AE /* NSObject+Property.m in Sources */,
 				FC8A70F91FCBFDBD00F938DF /* LYBillItem.m in Sources */,
@@ -3385,6 +3474,7 @@
 				FC43CE781FC52CE700F0A545 /* LYLIRLButton.m in Sources */,
 				FCA029691F9DCC6C0018E4AE /* LYWalletViewController.m in Sources */,
 				FCA028F01F9DCA5F0018E4AE /* UIView+DCExtension.m in Sources */,
+				FCC9B8832017243C003D07C1 /* LYServiceItemController.m in Sources */,
 				FC0D32571FCA65540062BC26 /* LYWithDetailItem.m in Sources */,
 				FC0D32511FCA65160062BC26 /* LYGatherItem.m in Sources */,
 				FCF7FF1B1FFF0A4B001F4BEF /* UIView+SGPagingView.m in Sources */,
@@ -3407,6 +3497,7 @@
 				FCA029151F9DCA5F0018E4AE /* MyQRViewController.m in Sources */,
 				FC3F688C1FA1D7390023F881 /* LYMoreSettingController.m in Sources */,
 				FC8A70EC1FCBC0EF00F938DF /* LYLinkItem.m in Sources */,
+				FCC9B88020172414003D07C1 /* LYServiceItem.m in Sources */,
 				FCA0292C1F9DCA5F0018E4AE /* SDWaitingView.m in Sources */,
 				FC5078781FFE513C00702116 /* LYAliItemCell.m in Sources */,
 				FC0D32541FCA65370062BC26 /* LYWithdrowItem.m in Sources */,
@@ -3477,9 +3568,11 @@
 				FC31D4A01FD5491900551AE3 /* LYPassWordController.m in Sources */,
 				FCA0293C1F9DCA5F0018E4AE /* XWFilterAnimator+XWMod.m in Sources */,
 				FC1B143B1FC3C3D8003814DB /* LYFillDataCell.m in Sources */,
+				FC4025742015C3000090A7EA /* DWTabBar.m in Sources */,
 				FCA029351F9DCA5F0018E4AE /* XWCoolAnimator.m in Sources */,
 				FC3122C21FA8200E00F16C09 /* LYCreditCardCell.m in Sources */,
 				FCA0291E1F9DCA5F0018E4AE /* SDRefreshView.m in Sources */,
+				FCC9B8792016CE57003D07C1 /* LYCardItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3663,7 +3756,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.Guanru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41befd32-8929-432a-ade1-09e4333de277";
+				PROVISIONING_PROFILE = "41d614ea-d488-45d6-8288-40c7d4c1ec5b";
 				PROVISIONING_PROFILE_SPECIFIER = MagpieToTest;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3694,7 +3787,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.guanrukeji.Guanru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41befd32-8929-432a-ade1-09e4333de277";
+				PROVISIONING_PROFILE = "41d614ea-d488-45d6-8288-40c7d4c1ec5b";
 				PROVISIONING_PROFILE_SPECIFIER = MagpieToTest;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

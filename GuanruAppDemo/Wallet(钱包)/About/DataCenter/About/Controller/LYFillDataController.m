@@ -81,7 +81,7 @@ static NSString *const LYFillDataCellID = @"LYFillDataCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = RGB(240, 239, 245);
-    self.title = @"口碑入驻";
+    self.title = @"大额收款";
     self.tableView.backgroundColor = RGB(240, 239, 245);
     [self setUpData];
     [self setUpTopAndBottom];

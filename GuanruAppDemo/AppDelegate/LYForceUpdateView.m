@@ -22,7 +22,7 @@
             make.centerX.equalTo(self.centerX);
             make.centerY.equalTo(self.centerY);
         }];
-        
+
     }
     
     return self;

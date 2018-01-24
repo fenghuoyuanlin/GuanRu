@@ -150,19 +150,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         }
         NSLog(@"iOS10 收到远程通知:%@",userInfo);
-        NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"mutableArr"];
-        NSMutableArray *ar = [NSMutableArray arrayWithArray:arr];
-        NSString *mesStr = userInfo[@"aps"][@"alert"];
-        NSLog(@"%@", mesStr);
-        NSString *timeStr = [DCSpeedy getNowTimeTimestamp];
-        NSString *date = [DCSpeedy timeStampToStr:timeStr];
-        NSDictionary *dic = @{
-                              @"mesStr" : mesStr,
-                              @"date" : date
-                              };
-        [ar addObject:dic];
-        [[NSUserDefaults standardUserDefaults] setObject:ar forKey:@"mutableArr"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
@@ -182,18 +170,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         }
         NSLog(@"iOS10 收到远程通知:%@",userInfo);
-        NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"mutableArr"];
-        NSMutableArray *ar = [NSMutableArray arrayWithArray:arr];
-        NSString *mesStr = userInfo[@"aps"][@"alert"];
-        NSString *timeStr = [DCSpeedy getNowTimeTimestamp];
-        NSString *date = [DCSpeedy timeStampToStr:timeStr];
-        NSDictionary *dic = @{
-                              @"mesStr" : mesStr,
-                              @"date" : date
-                              };
-        [ar addObject:dic];
-        [[NSUserDefaults standardUserDefaults] setObject:ar forKey:@"mutableArr"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
 
     }
     completionHandler();  // 系统要求执行这个方法

@@ -34,6 +34,8 @@
 @property(nonatomic, strong) UILabel *infoLabel;
 //左边点击视图
 @property(nonatomic, strong) UIView *leftTapView;
+//原支付宝账号
+@property(nonatomic, strong) NSString *aliAccount;
 
 @end
 
@@ -77,6 +79,11 @@ static NSString *const LYFillDataCellID = @"LYFillDataCell";
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self getOrgialAliAccount];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -123,6 +130,27 @@ static NSString *const LYFillDataCellID = @"LYFillDataCell";
     _registerArr = [LYRegisterItem mj_objectArrayWithFilename:@"AliData.plist"];
 }
 
+#pragma mark - 获取原支付宝账号
+-(void)getOrgialAliAccount
+{
+    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+    [dic setValue:userid forKey:@"agentid"];
+    NSLog(@"%@", dic);
+    __weak typeof(self) weakSelf= self;
+    [AFOwnerHTTPSessionManager getAddToken:Getalipayaccount Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+        NSString *code = responseObject[@"code"];
+        if ([code isEqualToString:@"0000"])
+        {
+            _aliAccount = responseObject[@"Data"][@"alipayaccount"];
+            [weakSelf.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+        
+    }];
+}
 
 #pragma mark - <UITableViewDataSource>
 
@@ -161,6 +189,10 @@ static NSString *const LYFillDataCellID = @"LYFillDataCell";
     else if (indexPath.section == 2)
     {
         cell.registerItem = _registerArr[indexPath.row + 4];
+        if (indexPath.row == 0)
+        {
+            cell.textField.text = _aliAccount;
+        }
     }
     
     if (indexPath.section == 1 && indexPath.row == 1)

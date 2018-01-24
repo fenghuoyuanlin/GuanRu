@@ -4,21 +4,27 @@
 <array>
 	<dict>
 		<key>iconImage</key>
-		<string>信用卡办理</string>
+		<string>我的账户</string>
 		<key>gridTitle</key>
-		<string>信用卡办理</string>
+		<string>我的账户</string>
 	</dict>
 	<dict>
 		<key>iconImage</key>
-		<string>信用贷款</string>
+		<string>商户管理</string>
 		<key>gridTitle</key>
-		<string>信用贷款</string>
+		<string>商户管理</string>
 	</dict>
 	<dict>
 		<key>iconImage</key>
-		<string>公益基金</string>
+		<string>账单查询</string>
 		<key>gridTitle</key>
-		<string>公益基金</string>
+		<string>账单查询</string>
+	</dict>
+	<dict>
+		<key>iconImage</key>
+		<string>敬请期待</string>
+		<key>gridTitle</key>
+		<string>敬请期待</string>
 	</dict>
 </array>
 </plist>

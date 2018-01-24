@@ -9,11 +9,11 @@
 #ifndef API_h
 #define API_h
 //服务器
-#define Localhost @"http://api.047104086014.gaofangh.com/"
+//#define Localhost @"http://api.047104086014.gaofangh.com/"
 //测试服
-//#define Localhost @"http://192.168.1.17:8081"//本地一
+//#define Localhost @"http://192.188.88.177:8081/"//本地一
 //#define Localhost @"http://192.168.1.11/"//本地一
-//#define Localhost @"http://www.1shouyin.com/"//本地二
+#define Localhost @"http://www.1shouyin.com/"//本地二
 
 /** 登录界面接口 */
 //登录
@@ -36,6 +36,8 @@
 #define UpdatePhon @"api/Agent/UpdatePhone"
 //更改支付宝账号
 #define AddChangeAlipy @"api/User/AddChangeAlipy"
+//获取用户的原支付宝账号
+#define Getalipayaccount @"api/Agent/Getalipayaccount"
 
 //添加商户的基本信息(供码方的基本信息）
 #define AddMerInfoRate @"api/User/AddMerInfoRate"
@@ -92,6 +94,18 @@
 /** 远程通知接口 */
 //获取路径
 #define AddTestFenrun @"api/Agent/AddTestFenrun"
+//获取公告路径
+#define GetAgentMessage @"api/Agent/GetAgentMessage"
+//获取下级代理商所设置费率的范围
+#define GETChildAgentArea @"api/Agent/GETChildAgentArea"
+
+//下级代理商所设置费率的范围
+#define GETAgentArea @"api/Agent/GETAgentArea"
+
+//修改下级费率
+#define SetAgentRate @"api/Agent/SetAgentRate"
+
+
 
 
 #endif /* API_h */

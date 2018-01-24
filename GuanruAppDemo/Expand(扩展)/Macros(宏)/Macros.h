@@ -14,6 +14,18 @@
 /** 屏幕宽度 */
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 
+//为了更好的适配iPhone X 做出以下宏定义
+//电池栏
+#define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+//导航栏
+#define kNavBarHeight 44.0
+//tabbar高度
+#define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+//导航+电池栏
+#define NavigationBarHeight (kStatusBarHeight + kNavBarHeight)
+//安全区底部高度
+#define KSafeBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?34.0:0)
+
 /******************    TabBar          *************/
 #define MallClassKey   @"rootVCClassString"
 #define MallTitleKey   @"title"

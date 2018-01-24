@@ -23,6 +23,7 @@
     
     _detailLabel = [[UILabel alloc] init];
     _detailLabel.text = _detailStr;
+    _detailLabel.numberOfLines = 0;
     [self.view addSubview:_detailLabel];
     
     [_detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {

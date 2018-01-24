@@ -12,7 +12,7 @@
 // Models
 
 // Views
-
+#import "DWTabBar.h"
 // Vendors
 
 // Categories
@@ -32,23 +32,56 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setUpTabBar];
     [self addDcChildViewContorller];
+     self.selectedViewController = [self.viewControllers objectAtIndex:2];
 }
+//适配iphonex的tabbar
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[UITabBar class]]) {
+            //此处注意设置 y的值 不要使用屏幕高度 - 49 ，因为还有tabbar的高度 ，用当前tabbarController的View的高度 - 49即可
+            view.frame = CGRectMake(view.frame.origin.x, self.view.bounds.size.height-KSafeBarHeight - 49, view.frame.size.width, 49);
+        }
+    }
+    // 此处是自定义的View的设置 如果使用了约束 可以不需要设置下面,_bottomView的frame
+//    _bottomView.frame = self.tabBar.bounds;
+}
+
+/**
+ *  利用 KVC 把 系统的 tabBar 类型改为自定义类型。
+ */
+- (void)setUpTabBar{
+    
+    [self setValue:[[DWTabBar alloc] init] forKey:@"tabBar"];
+}
+
 
 #pragma mark - 添加子控制器
 - (void)addDcChildViewContorller
 {
     NSArray *childArray = @[
-                            @{MallClassKey  : @"LYWalletViewController",
-                              MallTitleKey  : @"钱包",
-                              MallImgKey    : @"钱包icon",
-                              MallSelImgKey : @"钱包icon2"},
+                            @{MallClassKey  : @"LYShareViewController",
+                              MallTitleKey  : @"推广",
+                              MallImgKey    : @"推广icon",
+                              MallSelImgKey : @"推广icon2"},
                             
                             @{MallClassKey  : @"LYMessageViewController",
                               MallTitleKey  : @"消息",
                               MallImgKey    : @"消息icon",
                               MallSelImgKey : @"消息icon2"},
+                            
+                            @{MallClassKey  : @"LYWalletViewController",
+                              MallTitleKey  : @"",
+                              MallImgKey    : @"",
+                              MallSelImgKey : @""},
+                            
+                            @{MallClassKey  : @"LYServiceItemController",
+                              MallTitleKey  : @"客服",
+                              MallImgKey    : @"客服icon",
+                              MallSelImgKey : @"客服icon2"},
                             
                             @{MallClassKey  : @"LYMyselfViewController",
                               MallTitleKey  : @"我的",

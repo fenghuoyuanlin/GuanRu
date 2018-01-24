@@ -246,7 +246,7 @@ static NSString *const LYLoginCellID = @"LYLoginCell";
     }];
     
     _bottomLabel = [[UILabel alloc] init];
-    _bottomLabel.text = @"客服电话：400-0687-666";
+    _bottomLabel.text = @"客服电话：0571-28827446";
     _bottomLabel.textColor = RGB(92, 201, 218);
     [self.view addSubview:_bottomLabel];
     

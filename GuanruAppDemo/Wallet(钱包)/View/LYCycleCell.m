@@ -42,7 +42,7 @@
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, ScreenW, self.dc_height) delegate:self placeholderImage:nil];
     _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.autoScrollTimeInterval = 5.0;
-    _cycleScrollView.imageURLStringsGroup = @[@"banner1", @"banner2", @"banner3"];
+    _cycleScrollView.imageURLStringsGroup = @[@"banner1", @"banner2"];
     [self addSubview:_cycleScrollView];
 }
 

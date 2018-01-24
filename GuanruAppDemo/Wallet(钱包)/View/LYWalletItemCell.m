@@ -40,14 +40,16 @@
 
 -(void)setUpUI
 {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = RGB(62, 139, 251);
     
     _gridImageView = [[UIImageView alloc] init];
-    _gridImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _gridImageView.userInteractionEnabled = YES;
     [self addSubview:_gridImageView];
     
     _gridLabel = [[UILabel alloc] init];
     _gridLabel.font = PFR13Font;
+    _gridLabel.userInteractionEnabled = YES;
+    _gridLabel.textColor = [UIColor whiteColor];
     _gridLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_gridLabel];
     

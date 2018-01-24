@@ -479,7 +479,7 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
 #pragma mark - 我的客服
 -(void)myselfService
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"客服电话" message:@"客服时间:9:00-17:30\n400-0687-666" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"客服电话" message:@"客服时间:9:00-17:30\n0571-28827446" preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

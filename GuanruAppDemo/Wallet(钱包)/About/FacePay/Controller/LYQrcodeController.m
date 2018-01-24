@@ -31,8 +31,8 @@
 @property(nonatomic, strong) UILabel *storeLabel;
 //下提示语
 @property(nonatomic, strong) UILabel *bottomLabel;
-
-@property (nonatomic, strong) LYCodeView *codeview;//二维码
+//二维码
+@property (nonatomic, strong) LYCodeView *codeview;
 
 @end
 

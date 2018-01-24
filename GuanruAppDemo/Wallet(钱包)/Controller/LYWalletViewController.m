@@ -31,13 +31,15 @@
 // Models
 #import "LYWalletItem.h"
 #import "LYMoreItem.h"
+#import "LYCardItem.h"
 // Views
-#import "LYWalletItemCell.h"
-#import "LYRecommendCell.h"
+#import "LYExceedCell.h"
+#import "LYBottomCell.h"
 #import "LYCycleCell.h"
 #import "LYMoreItemCell.h"
 #import "LYWalletHeader.h"
 #import "LYTopLineFootView.h"
+#import "LYTitleHeaderView.h"
 // Vendors
 #import <MJExtension.h>
 #import "SubLBXScanViewController.h"
@@ -49,23 +51,25 @@
 
 //collectionView
 @property(nonatomic, strong) UICollectionView *collectionView;
-//10个属性数组
-@property(nonatomic, strong) NSMutableArray<LYWalletItem *> *walletArr;
 //推荐商品属性数组
 @property(nonatomic, strong) NSMutableArray<LYMoreItem *> *moreArr;
+//信用卡办理数组
+@property(nonatomic, strong) NSMutableArray<LYCardItem *> *cardArr;
 
 @property(nonatomic, strong) LYWalletHeader *headerView;
 
 @end
 
 //cell
-static NSString *const LYWalletItemCellID = @"LYWalletItemCell";
-static NSString *const LYRecommendCellID = @"LYRecommendCell";
+static NSString *const LYExceedCellID = @"LYExceedCell";
+static NSString *const LYBottomCellID = @"LYBottomCell";
 static NSString *const LYCycleCellID = @"LYCycleCell";
-//static NSString *const LYMoreItemCellID = @"LYMoreItemCell";
+static NSString *const LYMoreItemCellID = @"LYMoreItemCell";
 
-//footer
+//footer(section2)
 static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
+//header
+static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
 
 @implementation LYWalletViewController
 
@@ -77,23 +81,25 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
     {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.frame = CGRectMake(0, 125, ScreenW, ScreenH - 189);
+        _collectionView.frame = CGRectMake(0, -kStatusBarHeight, ScreenW, ScreenH - 64 + kStatusBarHeight);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [self.view addSubview:_collectionView];
         //注册
         //cell
-        [_collectionView registerClass:[LYWalletItemCell class] forCellWithReuseIdentifier:LYWalletItemCellID];
-        [_collectionView registerClass:[LYRecommendCell class] forCellWithReuseIdentifier:LYRecommendCellID];
+        [_collectionView registerClass:[LYExceedCell class] forCellWithReuseIdentifier:LYExceedCellID];
+        [_collectionView registerClass:[LYBottomCell class] forCellWithReuseIdentifier:LYBottomCellID];
         [_collectionView registerClass:[LYCycleCell class] forCellWithReuseIdentifier:LYCycleCellID];
-//        [_collectionView registerClass:[LYMoreItemCell class] forCellWithReuseIdentifier:LYMoreItemCellID];
+        [_collectionView registerClass:[LYMoreItemCell class] forCellWithReuseIdentifier:LYMoreItemCellID];
         
         //footer
         //foot
         [_collectionView registerClass:[LYTopLineFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:LYTopLineFootViewID];
         
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView"]; //分割线
+        //header
+        [_collectionView registerClass:[LYTitleHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:LYTitleHeaderViewID];
         
     }
     return _collectionView;
@@ -141,75 +147,68 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
 {
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
     
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    // 设置导航栏字体颜色
-    UIColor * naiColor = [UIColor whiteColor];
-    attributes[NSForegroundColorAttributeName] = naiColor;
-    attributes[NSFontAttributeName] = PFR20Font;
-    self.navigationController.navigationBar.barTintColor = RGBA(50, 112, 229, 1.0);
-    self.navigationController.navigationBar.titleTextAttributes = attributes;
+//    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+//    // 设置导航栏字体颜色
+//    UIColor *naiColor = [UIColor whiteColor];
+//    attributes[NSForegroundColorAttributeName] = naiColor;
+//    attributes[NSFontAttributeName] = PFR20Font;
+//    self.navigationController.navigationBar.barTintColor = RGBA(50, 112, 229, 1.0);
+//    self.navigationController.navigationBar.titleTextAttributes = attributes;
     // 这样设置状态栏样式是白色的
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    // 设置导航栏字体颜色
-    UIColor * naiColor = [UIColor blackColor];
-    attributes[NSForegroundColorAttributeName] = naiColor;
-    attributes[NSFontAttributeName] = PFR20Font;
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.titleTextAttributes = attributes;
+//    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+//    // 设置导航栏字体颜色
+//    UIColor * naiColor = [UIColor blackColor];
+//    attributes[NSForegroundColorAttributeName] = naiColor;
+//    attributes[NSFontAttributeName] = PFR20Font;
+//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.titleTextAttributes = attributes;
     // 这样设置状态栏样式是黑色的
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = DCBGColor;
-    [self.view addSubview:self.headerView];
-    self.collectionView.backgroundColor = DCBGColor;
+    self.view.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:self.headerView];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     [self setUpData];
 }
 
 #pragma mark - 加载数据
 -(void)setUpData
 {
-    _walletArr = [LYWalletItem mj_objectArrayWithFilename:@"WalletGrid.plist"];
-    
     _moreArr = [LYMoreItem mj_objectArrayWithFilename:@"Grid.plist"];
+    
 }
 
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return (section == 0) ? 3 : (section == 2) ? 1 : 1;
+    return (section == 2) ? 4 : 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak typeof(self) weakSelf = self;
     UICollectionViewCell *gridcell = nil;
     if (indexPath.section == 0)
-    {
-        LYWalletItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYWalletItemCellID forIndexPath:indexPath];
-        cell.gridItem = _walletArr[indexPath.row];
-        gridcell = cell;
-    }
-    else if(indexPath.section == 1)
-    {
-        LYRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYRecommendCellID forIndexPath:indexPath];
-        gridcell = cell;
-    }
-    else if (indexPath.section == 2)
     {
         __weak typeof(self) weakSelf = self;
         LYCycleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYCycleCellID forIndexPath:indexPath];
@@ -221,6 +220,66 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
         };
         gridcell = cell;
     }
+    else if(indexPath.section == 1)
+    {
+        LYExceedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYExceedCellID forIndexPath:indexPath];
+        cell.itemBlock = ^(NSIndexPath *indexPath) {
+            //这个标识放在block里面，在外面容易导致循环引用
+            NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+            if (str)
+            {
+                if (indexPath.row == 0)
+                {
+                    [weakSelf.navigationController pushViewController:[[LYLinkController alloc] init] animated:YES];
+                }
+                else if (indexPath.row == 1)
+                {
+                    [weakSelf.navigationController pushViewController:[[LYFillDataController alloc] init] animated:YES];
+                }
+                else if (indexPath.row == 2)
+                {
+                    
+                }
+                else if (indexPath.row == 3)
+                {
+                    [weakSelf.navigationController pushViewController:[[LYEnterViewController alloc] init] animated:YES];
+                }
+            }
+            else
+            {
+                [weakSelf rightLogin];
+            }
+            
+        };
+        gridcell = cell;
+    }
+    else if (indexPath.section == 2)
+    {
+        LYMoreItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMoreItemCellID forIndexPath:indexPath];
+        cell.gridItem = _moreArr[indexPath.row];
+        gridcell = cell;
+    }
+    else if (indexPath.section == 3)
+    {
+        LYBottomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYBottomCellID forIndexPath:indexPath];
+        cell.itemBlock = ^(NSIndexPath *indexPath) {
+            if (indexPath.row == 0)
+            {
+                LYWalletServiceController *serVC = [[LYWalletServiceController alloc] init];
+                serVC.title = @"信用卡办理";
+                serVC.urlString = @"http://real.izhongyin.com/wxportal/creditCard/bankCards.do?org_id=019300000000";
+                [weakSelf.navigationController pushViewController:serVC animated:YES];
+            }
+            else if (indexPath.row == 1)
+            {
+                LYWalletServiceController *serVC = [[LYWalletServiceController alloc] init];
+                serVC.title = @"进度查询";
+                serVC.urlString = @"http://real.izhongyin.com/wxportal/creditCard/creditBanksQuery";
+                [weakSelf.navigationController pushViewController:serVC animated:YES];
+            }
+        };
+        gridcell = cell;
+    }
     return  gridcell;
 }
 
@@ -229,7 +288,7 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
     UICollectionReusableView *reusableView = nil;
     if (kind == UICollectionElementKindSectionFooter)
     {
-        if (indexPath.section == 0)
+        if (indexPath.section == 1)
         {
             __weak typeof(self) weakSelf = self;
             LYTopLineFootView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:LYTopLineFootViewID forIndexPath:indexPath];
@@ -241,6 +300,12 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
             };
             reusableView = footerView;
         }
+        else if (indexPath.section == 3)
+        {
+            UICollectionReusableView *footview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+            footview.backgroundColor = [UIColor whiteColor];
+            reusableView = footview;
+        }
         else
         {
             UICollectionReusableView *footview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
@@ -248,6 +313,15 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
             reusableView = footview;
         }
         
+    }
+    
+    if (kind == UICollectionElementKindSectionHeader)
+    {
+        if (indexPath.section == 3)
+        {
+            LYTitleHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:LYTitleHeaderViewID forIndexPath:indexPath];
+            reusableView = headerView;
+        }
     }
     return reusableView;
     
@@ -258,15 +332,19 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
 {
     if (indexPath.section == 0)//属性
     {
-        return CGSizeMake(ScreenW / 3 , ScreenW / 4);
+        return (iphone5) ? CGSizeMake(ScreenW, 150) : CGSizeMake(ScreenW, 200);
     }
     if (indexPath.section == 1)//属性
     {
-        return (iphone5) ? CGSizeMake(ScreenW, 120) : CGSizeMake(ScreenW, 160);
+        return CGSizeMake(ScreenW, ScreenW / 4);
     }
     if (indexPath.section == 2)//猜你喜欢
     {
-        return CGSizeMake(ScreenW, ScreenW / 3);
+        return CGSizeMake(ScreenW / 4, ScreenW / 4 + 30);
+    }
+    if (indexPath.section == 3)
+    {
+        return (iphone5) ? CGSizeMake(ScreenW, 70) : CGSizeMake(ScreenW, 90);
     }
     return CGSizeZero;
 }
@@ -274,16 +352,28 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
 #pragma mark - foot宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     
-    return (section == 0) ? CGSizeMake(ScreenW, 60) : CGSizeMake(ScreenW - 30, 15);
+    return (section == 1) ? CGSizeMake(ScreenW, 60) : (section == 0) ? CGSizeMake(ScreenW, 0) : CGSizeMake(ScreenW, 15);
 }
+
+#pragma mark - head宽高
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (section == 3)
+    {
+        return CGSizeMake(ScreenW, 50);
+    }
+    
+    return CGSizeZero;
+}
+
 
 #pragma mark - X间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return (section == 0 || section == 2) ? 0 : 0;
+    return (section == 3) ? 15 : 0;
 }
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return (section == 0) ? 3 : (section == 2) ? 0 : 0;
+    return (section == 0) ? 0 : (section == 2) ? 0 : 0;
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -291,46 +381,38 @@ static NSString *const LYTopLineFootViewID = @"LYTopLineFootView";
 {
     NSLog(@"点击了10个第%zd属性第%zd",indexPath.section,indexPath.row);
     NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
-    if (indexPath.section == 2)
+    
+    if (indexPath.section != 0)
     {
-//        [DCSpeedy alertMes:@"敬请期待"];
-    }
-    else
-    {
+        
         if (str)
         {
-            if (indexPath.section == 0)
+            if (indexPath.section == 1)
             {
-                if (indexPath.row == 3)
+                NSLog(@"点击了section1");
+            }
+            else if (indexPath.section == 2)
+            {
+                if (indexPath.row == 0)
                 {
-                    //            [self.navigationController pushViewController:[[LYMyAccountController alloc] init] animated:YES];
-                }
-                else if (indexPath.row == 4)
-                {
-                    //            [self.navigationController pushViewController:[[LYMyRateController alloc] init] animated:YES];
-                }
-                else if (indexPath.row == 5)
-                {
-                    //            [self.navigationController pushViewController:[[LYUpdateController alloc] init] animated:YES];
+                    [self.navigationController pushViewController:[[LYMerchantController alloc] init] animated:YES];
                 }
                 else if (indexPath.row == 1)
                 {
-                    [self.navigationController pushViewController:[[LYFillDataController alloc] init] animated:YES];
                     
-                }
-                else if (indexPath.row == 0)
-                {
-                    [self.navigationController pushViewController:[[LYMerchantController alloc] init] animated:YES];
                 }
                 else if (indexPath.row == 2)
                 {
                     [self.navigationController pushViewController:[[LYBillSearchController alloc] init] animated:YES];
                 }
+                else if (indexPath.row == 3)
+                {
+                    
+                }
             }
-            else if (indexPath.section == 1)
+            else if (indexPath.section == 3)
             {
-//                [self setUpAgentIdConnect];
-                [self.navigationController pushViewController:[[LYShareViewController alloc] init] animated:YES];
+                
             }
         }
         else

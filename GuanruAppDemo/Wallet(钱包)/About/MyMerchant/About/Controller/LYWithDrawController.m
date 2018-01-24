@@ -70,7 +70,7 @@ static NSString *const LYWithdrawCellID = @"LYWithdrawCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpBase];
-    [self setUpData];
+//    [self setUpData];
     [self setUpNav];
     [self setUpRefreshHeader];
 }
@@ -144,7 +144,7 @@ static NSString *const LYWithdrawCellID = @"LYWithdrawCell";
     self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.page = 1;
             self.mutableArrModel = nil;
             [self setUpData];
@@ -160,7 +160,7 @@ static NSString *const LYWithdrawCellID = @"LYWithdrawCell";
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.page++;
             [weakSelf setUpData];
             [weakSelf.tableView reloadData];

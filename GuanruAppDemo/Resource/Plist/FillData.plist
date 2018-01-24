@@ -24,7 +24,7 @@
 		<key>title</key>
 		<string>供码费率</string>
 		<key>imageName</key>
-		<string>供码费率(%)不能大于1.2</string>
+		<string>供码费率(%)</string>
 	</dict>
 	<dict>
 		<key>title</key>

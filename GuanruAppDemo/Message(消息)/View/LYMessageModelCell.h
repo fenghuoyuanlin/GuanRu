@@ -13,9 +13,4 @@
 //消息模型
 @property(nonatomic, strong) LYMessageModel *messageItem;
 
-//消息
-@property(nonatomic, strong) UILabel *messageLabel;
-//日期时间
-@property(nonatomic, strong) UILabel *dateLabel;
-
 @end

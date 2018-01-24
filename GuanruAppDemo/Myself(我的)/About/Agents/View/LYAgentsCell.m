@@ -23,7 +23,7 @@
 //代理商名称
 @property(nonatomic, strong) UILabel *agentLabel;
 //时间
-@property(nonatomic, strong) UILabel *timeLabel;
+@property(nonatomic, strong) UIButton *editBtn;
 //费率
 @property(nonatomic, strong) UILabel *rateLabel;
 
@@ -50,10 +50,13 @@
     _agentLabel.textColor = RGB(202, 69, 83);
     [self addSubview:_agentLabel];
     
-    _timeLabel = [[UILabel alloc] init];
-    _timeLabel.font = PFR14Font;
-    _timeLabel.textColor = RGB(239, 99, 117);
-    [self addSubview:_timeLabel];
+    _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_editBtn setTitle:@"编辑" forState:0];
+    [_editBtn setTitleColor:RGB(0, 91, 251) forState:0];
+    _editBtn.titleLabel.font = PFR16Font;
+    [self addSubview:_editBtn];
+    
+    [_editBtn addTarget:self action:@selector(editBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     _rateLabel = [[UILabel alloc] init];
     _rateLabel.font = PFR14Font;
@@ -84,12 +87,12 @@
         make.left.top.equalTo(DCMargin);
     }];
     
-    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(DCMargin);
         make.top.equalTo(_agentLabel.bottom).offset(DCMargin);
     }];
     
-    [_rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-DCMargin);
         make.centerY.equalTo(_agentLabel.centerY);
     }];
@@ -102,10 +105,15 @@
     _agentItem = agentItem;
     
     _agentLabel.text = [NSString stringWithFormat:@"代理商名称:%@", agentItem.merchant_name];
-    _timeLabel.text = [NSString stringWithFormat:@"注册日期:%@", [DCSpeedy timeStampToStr:agentItem.createTime]];
     NSString *str = [NSString stringWithFormat:@"%.2f", [agentItem.rate_value doubleValue] * 100];
     NSString *sttt = [DCSpeedy changeFloat:str];
-    _rateLabel.text = [NSString stringWithFormat:@"%@%@%@", @"费率:", sttt, @"%"];
+    _rateLabel.text = [NSString stringWithFormat:@"%@%@%@", @"小额费率:", sttt, @"%"];
+}
+
+#pragma mark - 点击事件
+-(void)editBtnClick
+{
+    !_editBtnClickBlock  ? : _editBtnClickBlock();
 }
 
 @end

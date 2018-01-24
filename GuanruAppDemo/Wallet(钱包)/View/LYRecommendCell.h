@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LYCardItem;
 @interface LYRecommendCell : UICollectionViewCell
-//图片链接
-@property(nonatomic, strong) NSString *imgUrl;
+//数据模型
+@property(nonatomic, strong) LYCardItem *cardItem;
 
 @end

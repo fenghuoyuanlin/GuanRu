@@ -41,8 +41,6 @@
 -(void)setUpUI
 {
     self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 8.0;
-    self.layer.masksToBounds = YES;
     
     _gridImageView = [[UIImageView alloc] init];
     _gridImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -62,11 +60,11 @@
     [_gridImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(2 * DCMargin);
         if (iphone5) {
-            make.size.equalTo(CGSizeMake(40, 40));
+            make.size.equalTo(CGSizeMake(50, 50));
         }
         else
         {
-            make.size.equalTo(CGSizeMake(50, 50));
+            make.size.equalTo(CGSizeMake(60, 60));
         }
         make.centerX.equalTo(self.centerX);
     }];

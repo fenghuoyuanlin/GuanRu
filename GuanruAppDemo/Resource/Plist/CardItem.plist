@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>iconImage</key>
+		<string>信用卡办理</string>
+		<key>gridTitle</key>
+		<string>信用卡办理</string>
+		<key>info</key>
+		<string>高额度信用卡秒批</string>
+	</dict>
+	<dict>
+		<key>iconImage</key>
+		<string>进度查询</string>
+		<key>gridTitle</key>
+		<string>进度查询</string>
+		<key>info</key>
+		<string>快速查询办卡进度</string>
+	</dict>
+</array>
+</plist>

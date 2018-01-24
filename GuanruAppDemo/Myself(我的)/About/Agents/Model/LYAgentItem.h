@@ -16,4 +16,6 @@
 
 @property(nonatomic, strong) NSString *rate_value;
 
+@property(nonatomic, strong) NSString *id;
+
 @end
