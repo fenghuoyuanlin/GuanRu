@@ -124,7 +124,14 @@ static NSString *const LYFacePayCellID = @"LYFacePayCell";
         cell.titleLabel.text = titles[indexPath.row - 1];
         if (indexPath.row == 2)
         {
-            cell.textField.placeholder = @"小于25个点且为0.5的整数倍";
+            if ([_isJudgeCode isEqualToString:@"1003"])
+            {
+                cell.textField.placeholder = @"小于10个点且为0.1的整数倍";
+            }
+            else
+            {
+                cell.textField.placeholder = @"小于25个点且为0.5的整数倍";
+            }
         }
         
     }
@@ -159,48 +166,96 @@ static NSString *const LYFacePayCellID = @"LYFacePayCell";
     NSLog(@"%@", cellTwo.textField.text);
     if (![DCSpeedy isBlankString:cellOne.textField.text] && ![DCSpeedy isBlankString:cellTwo.textField.text])
     {
-        if ([cellTwo.textField.text doubleValue] > 25)
+        NSLog(@"%@", _isJudgeCode);
+        if ([_isJudgeCode isEqualToString:@"1003"])
         {
-            [DCSpeedy alertMes:@"输入的点数小于等于25"];
-        }
-        else if (fmod([cellTwo.textField.text doubleValue],0.5) == 0)
-        {
-            NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
-            
-            NSString *str = [NSString stringWithFormat:@"%lf", [cellTwo.textField.text doubleValue] * 0.01];
-            NSLog(@"%@", str);
-            NSString *rate = [DCSpeedy changeFloat:str];
-            NSDictionary *dic = @{
-                                  @"agentid": userid,
-                                  @"shop_name" : cellOne.textField.text,
-                                  @"shoprate" : rate,
-                                  @"remaker" : @""
-                                  };
-            NSLog(@"%@", dic);
-            [AFOwnerHTTPSessionManager postAddToken:AddPaymentCode Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSLog(@"%@", responseObject);
-                NSString *str = responseObject[@"code"];
-                if ([str isEqualToString:@"0000"])
-                {
-                    //异步发通知
-                    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"addUrl" object:nil];
-                    });
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                //                else
-                //                {
-                //                    NSString *aler = responseObject[@"msg"];
-                //                    [DCSpeedy alertMes:aler];
-                //                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                NSLog(@"%@", error);
-            }];
+            if ([cellTwo.textField.text doubleValue] > 10)
+            {
+                [DCSpeedy alertMes:@"输入的点数小于等于10"];
+            }
+            else
+            {
+                NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
+                
+                NSString *str = [NSString stringWithFormat:@"%lf", [cellTwo.textField.text doubleValue] * 0.01];
+                NSLog(@"%@", str);
+                NSString *rate = [DCSpeedy changeFloat:str];
+                NSDictionary *dic = @{
+                                      @"agentid": userid,
+                                      @"shop_name" : cellOne.textField.text,
+                                      @"shoprate" : rate,
+                                      @"productid" : _isJudgeCode,
+                                      @"remaker" : @""
+                                      };
+                NSLog(@"%@", dic);
+                [AFOwnerHTTPSessionManager postAddToken:AddPaymentCode Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+                    NSLog(@"%@", responseObject);
+                    NSString *str = responseObject[@"code"];
+                    if ([str isEqualToString:@"0000"])
+                    {
+                        //异步发通知
+                        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"addUrl" object:nil];
+                        });
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    //                else
+                    //                {
+                    //                    NSString *aler = responseObject[@"msg"];
+                    //                    [DCSpeedy alertMes:aler];
+                    //                }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    NSLog(@"%@", error);
+                }];
+            }
         }
         else
         {
-            [DCSpeedy alertMes:@"请输入0.5的倍数"];
+            if ([cellTwo.textField.text doubleValue] > 25)
+            {
+                [DCSpeedy alertMes:@"输入的点数小于等于25"];
+            }
+            else if (fmod([cellTwo.textField.text doubleValue],0.5) == 0)
+            {
+                NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
+                
+                NSString *str = [NSString stringWithFormat:@"%lf", [cellTwo.textField.text doubleValue] * 0.01];
+                NSLog(@"%@", str);
+                NSString *rate = [DCSpeedy changeFloat:str];
+                NSDictionary *dic = @{
+                                      @"agentid": userid,
+                                      @"shop_name" : cellOne.textField.text,
+                                      @"shoprate" : rate,
+                                      @"productid" : _isJudgeCode,
+                                      @"remaker" : @""
+                                      };
+                NSLog(@"%@", dic);
+                [AFOwnerHTTPSessionManager postAddToken:AddPaymentCode Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+                    NSLog(@"%@", responseObject);
+                    NSString *str = responseObject[@"code"];
+                    if ([str isEqualToString:@"0000"])
+                    {
+                        //异步发通知
+                        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"addUrl" object:nil];
+                        });
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    //                else
+                    //                {
+                    //                    NSString *aler = responseObject[@"msg"];
+                    //                    [DCSpeedy alertMes:aler];
+                    //                }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    NSLog(@"%@", error);
+                }];
+            }
+            else
+            {
+                [DCSpeedy alertMes:@"请输入0.5的倍数"];
+            }
         }
+        
         
         
     }

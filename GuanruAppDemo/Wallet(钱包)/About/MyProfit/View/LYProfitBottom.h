@@ -14,6 +14,10 @@
 @property(nonatomic, strong) UILabel *numLabel;
 //总金额
 @property(nonatomic, strong) UILabel *totalMoney;
+//底部视图
+@property(nonatomic, strong) UIView *bottomView;
+//冻结金额
+@property(nonatomic, strong) UILabel *freezeMoneyLabel;
 
 /** 结算按钮点击事件 */
 @property (nonatomic, copy) dispatch_block_t accountBtnClickBlock;

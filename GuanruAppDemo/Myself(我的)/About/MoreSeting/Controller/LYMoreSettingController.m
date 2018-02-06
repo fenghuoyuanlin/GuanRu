@@ -99,7 +99,7 @@ static NSString *const LYPersonlSettingCellID = @"LYPersonlSettingCell";
     }];
     
     _versionLabel = [[UILabel alloc] init];
-    _versionLabel.text = @"当前版本：v1.2.0";
+    _versionLabel.text = @"当前版本：v1.3.0";
     _versionLabel.textColor = RGB(152, 153, 154);
     _versionLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_versionLabel];

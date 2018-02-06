@@ -35,6 +35,7 @@
  */
 +(id)dc_setSomeOneChangeColor:(UILabel *)label SetSelectArray:(NSArray *)arrray SetChangeColor:(UIColor *)color;
 
++ (void)ChangeColorString:(NSString *)str andLabel:(UILabel *)label andColor:(UIColor *)color;
 
 #pragma mark -  根据传入字体大小计算字体宽高
 + (CGSize)dc_calculateTextSizeWithText : (NSString *)text WithTextFont: (NSInteger)textFont WithMaxW : (CGFloat)maxW ;

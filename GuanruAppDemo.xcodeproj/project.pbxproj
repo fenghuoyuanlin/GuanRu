@@ -154,6 +154,8 @@
 		FC56E24820078EAD007E4FAB /* LYMessageModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC56E24720078EAD007E4FAB /* LYMessageModelCell.m */; };
 		FC62BB1E1FDBB6D000791FE8 /* LYForceUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC62BB1D1FDBB6D000791FE8 /* LYForceUpdateView.m */; };
 		FC67B13F1FE11F9C00207C71 /* LYDayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC67B13E1FE11F9C00207C71 /* LYDayItem.m */; };
+		FC83E7F92023320300DD6D54 /* LYWithdrawDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC83E7F82023320300DD6D54 /* LYWithdrawDetailController.m */; };
+		FC83E7FC2023336300DD6D54 /* LYWithdrawDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC83E7FB2023336300DD6D54 /* LYWithdrawDetailCell.m */; };
 		FC8A70E31FCBB3FC00F938DF /* LYFacePayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8A70E21FCBB3FC00F938DF /* LYFacePayCell.m */; };
 		FC8A70E61FCBBF1A00F938DF /* LYLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8A70E51FCBBF1A00F938DF /* LYLinkController.m */; };
 		FC8A70E91FCBBF3900F938DF /* LYLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8A70E81FCBBF3900F938DF /* LYLinkCell.m */; };
@@ -592,6 +594,10 @@
 		FC62BB1D1FDBB6D000791FE8 /* LYForceUpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYForceUpdateView.m; sourceTree = "<group>"; };
 		FC67B13D1FE11F9C00207C71 /* LYDayItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYDayItem.h; sourceTree = "<group>"; };
 		FC67B13E1FE11F9C00207C71 /* LYDayItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYDayItem.m; sourceTree = "<group>"; };
+		FC83E7F72023320300DD6D54 /* LYWithdrawDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWithdrawDetailController.h; sourceTree = "<group>"; };
+		FC83E7F82023320300DD6D54 /* LYWithdrawDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWithdrawDetailController.m; sourceTree = "<group>"; };
+		FC83E7FA2023336300DD6D54 /* LYWithdrawDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWithdrawDetailCell.h; sourceTree = "<group>"; };
+		FC83E7FB2023336300DD6D54 /* LYWithdrawDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWithdrawDetailCell.m; sourceTree = "<group>"; };
 		FC8A70E11FCBB3FC00F938DF /* LYFacePayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYFacePayCell.h; sourceTree = "<group>"; };
 		FC8A70E21FCBB3FC00F938DF /* LYFacePayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYFacePayCell.m; sourceTree = "<group>"; };
 		FC8A70E41FCBBF1A00F938DF /* LYLinkController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYLinkController.h; sourceTree = "<group>"; };
@@ -1014,6 +1020,8 @@
 				FC0D32471FCA58990062BC26 /* LYGatheringController.m */,
 				FC0D32491FCA58D30062BC26 /* LYWithDrawController.h */,
 				FC0D324A1FCA58D30062BC26 /* LYWithDrawController.m */,
+				FC83E7F72023320300DD6D54 /* LYWithdrawDetailController.h */,
+				FC83E7F82023320300DD6D54 /* LYWithdrawDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1042,6 +1050,8 @@
 				FC0D32591FCA65850062BC26 /* LYGatherCell.m */,
 				FC0D325B1FCA65A20062BC26 /* LYWithdrawCell.h */,
 				FC0D325C1FCA65A20062BC26 /* LYWithdrawCell.m */,
+				FC83E7FA2023336300DD6D54 /* LYWithdrawDetailCell.h */,
+				FC83E7FB2023336300DD6D54 /* LYWithdrawDetailCell.m */,
 				FC0D32641FCA9A570062BC26 /* LYWithdrowHeader.h */,
 				FC0D32651FCA9A570062BC26 /* LYWithdrowHeader.m */,
 			);
@@ -3355,6 +3365,7 @@
 				FC33763D1FA727850030E39B /* LYUpdateController.m in Sources */,
 				FC3F68871FA1D3A40023F881 /* LYPersonalWechatController.m in Sources */,
 				FC0D32421FCA54C40062BC26 /* LYPaymentDetailController.m in Sources */,
+				FC83E7FC2023336300DD6D54 /* LYWithdrawDetailCell.m in Sources */,
 				FC3F84471FF34DD50074786C /* OpenShare+Weibo.m in Sources */,
 				FC50787D1FFE675200702116 /* LYCustionHeadView.m in Sources */,
 				FCA029001F9DCA5F0018E4AE /* UIViewController+MMDrawerController.m in Sources */,
@@ -3443,6 +3454,7 @@
 				FC4D4BEC1FABF807001D6D32 /* LYShareQrcodeController.m in Sources */,
 				FCA029241F9DCA5F0018E4AE /* UIViewController+XWTransition.m in Sources */,
 				FCA0295D1F9DCC0D0018E4AE /* LYTabbarController.m in Sources */,
+				FC83E7F92023320300DD6D54 /* LYWithdrawDetailController.m in Sources */,
 				FC1A9B271FA96DC800EE8663 /* LYBillSearchController.m in Sources */,
 				FCA029121F9DCA5F0018E4AE /* LBXZXCapture.m in Sources */,
 				FC568ECA2001C82600400EE7 /* NSObject+YYModel.m in Sources */,

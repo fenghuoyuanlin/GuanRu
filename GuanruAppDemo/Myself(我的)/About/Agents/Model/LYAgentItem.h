@@ -17,5 +17,9 @@
 @property(nonatomic, strong) NSString *rate_value;
 
 @property(nonatomic, strong) NSString *id;
+//大额费率
+@property(nonatomic, strong) NSString *large_value;
+//信用卡费率
+@property(nonatomic, strong) NSString *credit_value;
 
 @end

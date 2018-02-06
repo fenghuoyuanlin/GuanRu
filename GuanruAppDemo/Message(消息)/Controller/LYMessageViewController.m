@@ -41,7 +41,7 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     if (!_tableView)
     {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.frame = CGRectMake(0, 0, ScreenW, ScreenH - 64);
+        _tableView.frame = CGRectMake(0, 0, ScreenW, ScreenH - 64 - KSafeBarHeight);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -144,19 +144,19 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     //进入界面就开始刷新一下
     [self.tableView.mj_header beginRefreshing];
     
-    // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-            
-            // 结束刷新
-            [weakSelf.tableView.mj_footer endRefreshing];
-        });
-    }];
-    // 默认先隐藏footer
-    self.tableView.mj_footer.hidden = NO;
+//    // 上拉刷新
+//    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//
+//        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [weakSelf.tableView reloadData];
+//
+//            // 结束刷新
+//            [weakSelf.tableView.mj_footer endRefreshing];
+//        });
+//    }];
+//    // 默认先隐藏footer
+//    self.tableView.mj_footer.hidden = NO;
     
     
 }

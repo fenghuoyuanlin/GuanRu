@@ -34,13 +34,23 @@
 @property(nonatomic, assign) NSInteger page;
 
 @property(nonatomic, strong) NSMutableArray *mutableArrModel;
+//选择列数
+@property(nonatomic, strong) NSMutableArray *mutableKeysArr;
 
-//最大费率
+//小额最大费率
 @property(nonatomic, strong) NSString *maxRate;
-//最小费率
+//小额最小费率
 @property(nonatomic, strong) NSString *minRate;
-//间隔
+//小额费率间隔
 @property(nonatomic, strong) NSString *interval;
+
+//信用卡最大费率
+@property(nonatomic, strong) NSString *maxCardRate;
+//信用卡最小费率
+@property(nonatomic, strong) NSString *minCardRate;
+//信用卡费率间隔
+@property(nonatomic, strong) NSString *cardInterval;
+
 
 @end
 
@@ -104,7 +114,7 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
     UIImage *searchBarBg = [self GetImageWithColor:[UIColor clearColor] andHeight:32.0f];
     [_searchBar setBackgroundImage:searchBarBg];
     _searchBar.delegate = self;
-    _searchBar.placeholder = @"按口碑名称商家搜索";
+    _searchBar.placeholder = @"按口碑名称商家或者手机号搜索";
     [self.view addSubview:_searchBar];
 }
     
@@ -279,6 +289,7 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
         NSLog(@"点击了编辑功能");
         LYAgentItem *item = weakSelf.mutableArrModel[indexPath.row];
         [weakSelf getAllChildRateWithid:item.id AndIndexPath:indexPath];
+       
     };
     
     return cell;
@@ -325,19 +336,104 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
 -(void)getAllChildRateWithid:(NSString *)agid AndIndexPath:(NSIndexPath *)index
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
-    NSDictionary *dic = @{
-                          @"agentid": userid,
-                          @"agentchild" : agid
-                          };
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+    [dic setValue:userid forKey:@"agentid"];
+    [dic setValue:agid forKey:@"agentchild"];
     NSLog(@"%@", dic);
     [AFOwnerHTTPSessionManager getAddToken:GETAgentArea Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
         NSString *code = responseObject[@"code"];
         if ([code isEqualToString:@"0000"])
         {
-            _maxRate = responseObject[@"Data"][@"Agentchild"];
-            _minRate = responseObject[@"Data"][@"Agent"];
-            _interval = responseObject[@"Data"][@"interval"];
+            self.mutableKeysArr = [NSMutableArray arrayWithCapacity:1];
+            NSArray *allKeys = responseObject[@"Data"];
+            
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1001"])
+                {
+                    NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
+                    _maxRate = responseObject[@"Data"][@"1001"][@"max"];
+                    _minRate = responseObject[@"Data"][@"1001"][@"min"];
+                    _interval = responseObject[@"Data"][@"1001"][@"interval"];
+                    for (double i = [_maxRate doubleValue] * 100; i > [_minRate doubleValue] * 100 - [_interval doubleValue]; i = i - [_interval doubleValue])
+                    {
+                        NSString *pp = [NSString stringWithFormat:@"%lf", i];
+                        NSString *str = [DCSpeedy changeFloat:pp];
+                        NSString *strr = [NSString stringWithFormat:@"小额%@", str];
+                        NSLog(@"%@", strr);
+                        [mutableRate addObject:strr];
+                    }
+                    
+                    NSString *cardStr = [[mutableRate lastObject] substringFromIndex:2];
+                    NSString *numStr = [NSString stringWithFormat:@"%lf", [_minRate doubleValue] * 100];
+                    NSString *cardStrr = [DCSpeedy changeFloat:numStr];
+                    
+                    if ([cardStrr doubleValue] == [cardStr doubleValue])
+                    {
+                        
+                    }
+                    else
+                    {
+                        [mutableRate removeLastObject];
+                    }
+                    
+                    
+                    [self.mutableKeysArr addObject:mutableRate];
+                }
+            }
+            
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1002"])
+                {
+                    
+                }
+            }
+            
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1003"])
+                {
+                    NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
+                    _maxCardRate = responseObject[@"Data"][@"1003"][@"max"];
+                    _minCardRate = responseObject[@"Data"][@"1003"][@"min"];
+                    _cardInterval = responseObject[@"Data"][@"1003"][@"interval"];
+                    NSLog(@"%lf,%lf", [_maxCardRate doubleValue], [_minCardRate doubleValue]);
+                    if ([responseObject[@"Data"][@"1003"][@"IsDefault"] integerValue] == 0)
+                    {
+                        [mutableRate addObject:@"--"];
+                    }
+                    
+                    for (double i = [_maxCardRate doubleValue] * 100; i > [_minCardRate doubleValue] * 100 - [_cardInterval doubleValue]; i = i - [_cardInterval doubleValue])
+                    {
+                        NSString *pp = [NSString stringWithFormat:@"%.1f", i];
+                        NSString *str = [DCSpeedy changeFloat:pp];
+                        NSString *strr = [NSString stringWithFormat:@"信用卡%@", str];
+                        NSLog(@"%@", strr);
+                        [mutableRate addObject:strr];
+                    }
+                    
+                    NSString *cardStr = [[mutableRate lastObject] substringFromIndex:3];
+                    NSString *numStr = [NSString stringWithFormat:@"%lf", [_minCardRate doubleValue] * 100];
+                    NSString *cardStrr = [DCSpeedy changeFloat:numStr];
+                    
+                    if ([cardStr doubleValue] == [cardStrr doubleValue])
+                    {
+                        
+                    }
+                    else
+                    {
+                        [mutableRate removeLastObject];
+                    }
+                    
+                    
+                    [self.mutableKeysArr addObject:mutableRate];
+                }
+            }
+            
+            NSLog(@"%@", self.mutableKeysArr[0]);
             
             [self setUpChooseRateWith:agid AndIndex:index];
         }
@@ -351,42 +447,85 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
 {
     
     //    double rate = [_currentRate doubleValue];
-    if ([_maxRate doubleValue] == [_minRate doubleValue])
+    __weak typeof(self) weakSelf = self;
+    if (self.mutableKeysArr.count == 1)
     {
-        [DCSpeedy alertMes:@"该代理商与您费率相同，已无权设置"];
+        [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:self.mutableKeysArr defaultSelValue:@[self.mutableKeysArr[0][0]] isAutoSelect:NO resultBlock:^(id selectValue) {
+            NSLog(@"%@", selectValue[0]);
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定是否要编辑下级代理商的费率?" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+                NSLog(@"点击取消");
+                
+            }]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                NSLog(@"点击确认");
+                NSString *str = [NSString stringWithFormat:@"%@", [selectValue[0] substringFromIndex:2]];
+                NSLog(@"%@", str);
+                [weakSelf setAgentRateWith:childId andRate:str andCardRate:@"0" andIndex:index];
+                
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }];
     }
-    else
+    else if (self.mutableKeysArr.count == 2)
     {
-        NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
-        for (double i = [_minRate doubleValue] * 100; i < [_maxRate doubleValue] * 100; i = i + [_interval doubleValue])
-        {
-            NSString *pp = [NSString stringWithFormat:@"%lf", i];
-            NSString *str = [DCSpeedy changeFloat:pp];
-            NSLog(@"%@", str);
-            [mutableRate addObject:str];
-        }
-        
-        __weak typeof(self) weakSelf = self;
-        [BRStringPickerView showStringPickerWithTitle:@"修改代理商费率" dataSource:mutableRate defaultSelValue:mutableRate[0] isAutoSelect:NO resultBlock:^(id selectValue) {
-            NSLog(@"%@", selectValue);
-            [weakSelf setAgentRateWith:childId andRate:selectValue andIndex:index];
+        [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:self.mutableKeysArr defaultSelValue:@[self.mutableKeysArr[0][0]] isAutoSelect:NO resultBlock:^(id selectValue) {
+            NSLog(@"%@", selectValue[0]);
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定是否要编辑下级代理商的费率?" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+                NSLog(@"点击取消");
+                
+            }]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                NSLog(@"点击确认");
+                NSString *str = [NSString stringWithFormat:@"%@", [selectValue[0] substringFromIndex:2]];
+                NSLog(@"%@", str);
+                if ([selectValue[1] isEqualToString:@"--"])
+                {
+                    [weakSelf setAgentRateWith:childId andRate:str andCardRate:@"0" andIndex:index];
+                }
+                else
+                {
+                    NSString *strr = [NSString stringWithFormat:@"%@", [selectValue[1] substringFromIndex:3]];
+                    [weakSelf setAgentRateWith:childId andRate:str andCardRate:strr andIndex:index];
+                }
+                
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
         }];
     }
     
-    
 }
 
--(void)setAgentRateWith:(NSString *)childId andRate:(NSString *)rate andIndex:(NSIndexPath *)index
+-(void)setAgentRateWith:(NSString *)childId andRate:(NSString *)rate andCardRate:(NSString *)cardRate andIndex:(NSIndexPath *)index
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
     NSString *public = [[NSUserDefaults standardUserDefaults] objectForKey:@"publicKeyClient"];
+    
     NSString *pp = [NSString stringWithFormat:@"%lf", [rate doubleValue] * 0.01];
     NSString *str = [DCSpeedy changeFloat:pp];
     NSString *publicKey = [RSAEncryptor encryptString:str publicKey:public];
+    
+    NSString *cp = [NSString stringWithFormat:@"%lf", [cardRate doubleValue] * 0.01];
+    NSString *cpStr = [DCSpeedy changeFloat:cp];
+    NSString *cardPublicKey = [RSAEncryptor encryptString:cpStr publicKey:public];
+    
     NSDictionary *dic = @{
                           @"agentid": userid,
                           @"agentchild" : childId,
-                          @"Rate" : publicKey
+                          @"Rate" : publicKey,
+                          @"Rate_credit" : cardPublicKey
                           };
     NSLog(@"%@", dic);
     __weak typeof(self) weakSelf = self;
@@ -397,6 +536,15 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
         {
             LYAgentItem *item = weakSelf.mutableArrModel[index.row];
             item.rate_value = str;
+            if ([cardRate isEqualToString:@"0"])
+            {
+                
+            }
+            else
+            {
+                item.credit_value = cpStr;
+            }
+            
             [weakSelf.tableView reloadData];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -405,6 +553,27 @@ static NSString *const LYAgentsCellID = @"LYAgentsCell";
     }];
 }
 
+
+#pragma mark - 弹出是否编辑框
+-(void)setUpAlerView
+{
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定是否要编辑下级代理商的费率?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSLog(@"点击取消");
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSLog(@"点击确认");
+        
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation

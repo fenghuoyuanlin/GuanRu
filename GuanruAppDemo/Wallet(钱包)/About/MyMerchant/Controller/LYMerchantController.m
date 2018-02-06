@@ -32,6 +32,8 @@
 @property(nonatomic, strong) UILabel *bottomMoney;
 
 @property(nonatomic, strong) UIView *gatherView;
+//冻结View消失或者隐藏
+@property(nonatomic, assign) double signLength;
 
 @end
 
@@ -43,7 +45,7 @@
 {
     if (!_bottomView)
     {
-        _bottomView = [[LYProfitBottom alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 120)];
+        _bottomView = [[LYProfitBottom alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 200)];
         __weak typeof(self) weakSelf = self;
         _bottomView.accountBtnClickBlock = ^{
             NSLog(@"点击了结算按钮");
@@ -91,7 +93,6 @@
     self.view.backgroundColor = DCBGColor;
     self.title = @"我的账户";
     [self.view addSubview:self.bottomView];
-    [self setUpBottomLabel];
     [self setUpMerchantData];
 //    [self setUpNav];
     
@@ -112,13 +113,17 @@
 #pragma mark - 设置底部Label
 -(void)setUpBottomLabel
 {
-    UILabel *leftlabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 120, 120, 30)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, _signLength, ScreenW, 30)];
+    view.backgroundColor = DCBGColor;
+    [self.view addSubview:view];
+    
+    UILabel *leftlabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _signLength, 120, 30)];
     leftlabel.font = PFR14Font;
     leftlabel.text = @"近30天交易记录";
     [self.view addSubview:leftlabel];
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(ScreenW - 120, 120, 120, 30);
+    rightBtn.frame = CGRectMake(ScreenW - 120, _signLength, 120, 30);
     [rightBtn setTitle:@"查看更多>>" forState:0];
     rightBtn.titleLabel.font = PFR14Font;
     [rightBtn setTitleColor:[UIColor blackColor] forState:0];
@@ -126,10 +131,10 @@
     [rightBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     _gatherView = [[UIView alloc] init];
-    _gatherView.frame = CGRectMake(0, 150, ScreenW, ScreenH - 150 - 64);
+    _gatherView.frame = CGRectMake(0, _signLength + 30, ScreenW, ScreenH - 30 - _signLength - 64);
     [self.view addSubview:_gatherView];
     LYGatheringController *gatherVC = [[LYGatheringController alloc] init];
-    gatherVC.height = ScreenH - 150 - 64;
+    gatherVC.height = ScreenH - 230 - 64;
     [_gatherView addSubview:gatherVC.view];
 }
 
@@ -154,7 +159,20 @@
             NSLog(@"%@", _merchantModel.amt);
             weakSelf.bottomView.numLabel.text = [NSString stringWithFormat:@"%.2f", [_merchantModel.amt doubleValue]];
             NSString *totalStr = [NSString stringWithFormat:@"%.2f", [_merchantModel.deposit doubleValue]];
-            weakSelf.bottomView.totalMoney.text = [NSString stringWithFormat:@"总收益：%@元", totalStr];
+            weakSelf.bottomView.totalMoney.text = [NSString stringWithFormat:@"总收益：%@", totalStr];
+            //判断用户是否冻结金额
+            if ([weakSelf.merchantModel.isLock isEqualToString:@"1"])
+            {
+                weakSelf.bottomView.freezeMoneyLabel.text = [NSString stringWithFormat:@"%.2f", [_merchantModel.frozenamt doubleValue]];
+                _signLength = 200;
+                [self setUpBottomLabel];
+            }
+            else
+            {
+                weakSelf.bottomView.bottomView.hidden = YES;
+                _signLength = 180;
+                [self setUpBottomLabel];
+            }
         }
         else
         {

@@ -28,6 +28,7 @@
 #import "LYWalletServiceController.h"
 #import "LYPaymentDetailController.h"
 #import "LYShareViewController.h"
+#import "LYCreditLoansController.h"
 // Models
 #import "LYWalletItem.h"
 #import "LYMoreItem.h"
@@ -230,15 +231,24 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
             {
                 if (indexPath.row == 0)
                 {
-                    [weakSelf.navigationController pushViewController:[[LYLinkController alloc] init] animated:YES];
+                    LYLinkController *tempVC = [[LYLinkController alloc] init];
+                    tempVC.judeCode = @"1001";
+                    tempVC.title = @"小额收款";
+                    [weakSelf.navigationController pushViewController:tempVC animated:YES];
                 }
                 else if (indexPath.row == 1)
                 {
-                    [weakSelf.navigationController pushViewController:[[LYFillDataController alloc] init] animated:YES];
+                    LYLinkController *tempVC = [[LYLinkController alloc] init];
+                    tempVC.judeCode = @"1002";
+                    tempVC.title = @"大额收款";
+                    [weakSelf.navigationController pushViewController:tempVC animated:YES];
                 }
                 else if (indexPath.row == 2)
                 {
-                    
+                    LYLinkController *tempVC = [[LYLinkController alloc] init];
+                    tempVC.judeCode = @"1003";
+                    tempVC.title = @"信用卡收款";
+                    [weakSelf.navigationController pushViewController:tempVC animated:YES];
                 }
                 else if (indexPath.row == 3)
                 {
@@ -399,7 +409,7 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
                 }
                 else if (indexPath.row == 1)
                 {
-                    
+                    [self.navigationController pushViewController:[[LYFillDataController alloc] init] animated:YES];
                 }
                 else if (indexPath.row == 2)
                 {

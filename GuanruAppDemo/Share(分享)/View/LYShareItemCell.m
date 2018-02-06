@@ -22,6 +22,8 @@
 @interface LYShareItemCell ()
 //标题
 @property(nonatomic, strong) UILabel *titleLabel;
+//内容
+@property(nonatomic, strong) UILabel *infoLabel;
 //详情
 @property(nonatomic, strong) UIImageView *indicatorImgView;
 //图片
@@ -46,8 +48,30 @@
     self.backgroundColor = [UIColor whiteColor];
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = PFR18Font;
+    if (iphone5)
+    {
+        _titleLabel.font = PFR16Font;
+    }
+    else
+    {
+        _titleLabel.font = PFR18Font;
+    }
+    
+    _titleLabel.textColor = RGB(5, 123, 250);
     [self addSubview:_titleLabel];
+    
+    _infoLabel = [[UILabel alloc] init];
+    if (iphone5)
+    {
+        _infoLabel.font = PFR12Font;
+    }
+    else
+    {
+        _infoLabel.font = PFR14Font;
+    }
+    _infoLabel.numberOfLines = 0;
+    _infoLabel.textColor = RGB(50, 50, 50);
+    [self addSubview:_infoLabel];
     
     _indicatorImgView = [[UIImageView alloc] init];
     _indicatorImgView.image = [UIImage imageNamed:@"箭2"];
@@ -79,12 +103,18 @@
     [_imageNameView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(DCMargin);
         make.centerY.equalTo(self);
-        make.size.equalTo(CGSizeMake(44, 44));
+        make.size.equalTo(CGSizeMake(70, 70));
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_imageNameView.right).offset(15);
-        make.center.equalTo(self);
+        make.top.equalTo(_imageNameView.top).offset(0);
+    }];
+    
+    [_infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_titleLabel.bottom).offset(5);
+        make.left.equalTo(_titleLabel.left);
+        make.right.equalTo(_indicatorImgView.left).offset(-20);
     }];
     
     [_indicatorImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,6 +133,7 @@
     _messageItem = messageItem;
     _imageNameView.image = [UIImage imageNamed:messageItem.imageName];
     _titleLabel.text = messageItem.title;
+    _infoLabel.text = messageItem.info;
     
 }
 

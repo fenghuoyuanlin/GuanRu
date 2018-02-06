@@ -74,7 +74,6 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 -(void)setUpBase
 {
     self.view.backgroundColor = DCBGColor;
-    self.title = @"生成链接";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.backgroundColor = DCBGColor;
 }
@@ -127,8 +126,10 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
     __weak typeof(self) weakSelf = self;
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
     NSDictionary *dic = @{
-                          @"agentid": userid
+                          @"agentid": userid,
+                          @"productid" : _judeCode
                           };
+    NSLog(@"%@", dic);
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [AFOwnerHTTPSessionManager getAddToken:GetShopList Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
@@ -165,6 +166,7 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.linkItem = _linkArr[indexPath.row];
+    [cell.commenBtn setTitle:([_judeCode isEqualToString:@"1001"]) ? @"小额商户" : ([_judeCode isEqualToString:@"1002"] ? @"大额商户" : @"信用卡商户") forState:0];
     __weak typeof(self) weakSelf = self;
     cell.openClickBlock = ^{
         NSLog(@"点击了打开");
@@ -212,7 +214,9 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 -(void)bottomBtnClick
 {
     NSLog(@"点击了新增按钮");
-    [self.navigationController pushViewController:[[LYFacePayController alloc] init] animated:YES];
+    LYFacePayController *tempVC = [[LYFacePayController alloc] init];
+    tempVC.isJudgeCode = _judeCode;
+    [self.navigationController pushViewController:tempVC animated:YES];
 }
 
 
@@ -220,7 +224,8 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 -(void)openUrlWithShopid:(NSString *)shopid andNsintenger:(NSInteger )row
 {
     NSDictionary *dic = @{
-                          @"shopid": shopid
+                          @"shopid": shopid,
+                          @"productid" : _judeCode
                           };
     __weak typeof(self) weakSelf = self;
     [AFOwnerHTTPSessionManager getAddToken:GetUrlQrCode Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -239,7 +244,8 @@ static NSString *const LYLinkCellID = @"LYLinkCell";
 -(void)delegateUrlWithShopid:(NSString *)shopid
 {
     NSDictionary *dic = @{
-                          @"shopid": shopid
+                          @"shopid": shopid,
+                          @"productid" : _judeCode
                           };
     
     [AFOwnerHTTPSessionManager getAddToken:DelShopping Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {

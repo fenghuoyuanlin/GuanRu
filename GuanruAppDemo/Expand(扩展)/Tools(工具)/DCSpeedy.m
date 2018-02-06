@@ -374,4 +374,10 @@
     
 }
 
++ (void)ChangeColorString:(NSString *)str andLabel:(UILabel *)label andColor:(UIColor *)color{
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:label.text];
+    [string addAttribute:NSForegroundColorAttributeName value:color range:[label.text rangeOfString:str]];
+    label.attributedText = string;
+}
+
 @end

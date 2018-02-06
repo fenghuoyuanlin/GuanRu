@@ -8,7 +8,7 @@
 
 #import "LYWithDrawController.h"
 // Controllers
-
+#import "LYWithdrawDetailController.h"
 // Models
 #import "LYWithdrowItem.h"
 #import "LYWithDetailItem.h"
@@ -220,7 +220,9 @@ static NSString *const LYWithdrawCellID = @"LYWithdrawCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    LYWithdrawDetailController *tempVC = [[LYWithdrawDetailController alloc] init];
+    tempVC.withdrawItem = self.mutableArrModel[indexPath.row];
+    [self.navigationController pushViewController:tempVC animated:YES];
 }
 
 

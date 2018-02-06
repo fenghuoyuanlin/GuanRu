@@ -23,6 +23,7 @@
 #import <MJExtension.h>
 #import "OpenShareHeader.h"
 #import "BRPickerView.h"
+#import "Base64.h"
 // Categories
 
 // Others
@@ -34,12 +35,24 @@
 @property(nonatomic, strong) NSMutableArray<LYShareItem *> *messageArr;
 //当前费率
 @property(nonatomic, strong) NSString *currentRate;
-//最大费率
+
+//可变数组(几个选择列)
+@property(nonatomic, strong) NSMutableArray *mutableKeysArr;
+
+//小额最大费率
 @property(nonatomic, strong) NSString *maxRate;
-//最小费率
+//小额最小费率
 @property(nonatomic, strong) NSString *minRate;
-//间隔
+//小额间隔
 @property(nonatomic, strong) NSString *interval;
+
+//信用卡最大费率
+@property(nonatomic, strong) NSString *maxCardRate;
+//信用卡最小费率
+@property(nonatomic, strong) NSString *minCardRate;
+//信用卡间隔
+@property(nonatomic, strong) NSString *cardInterval;
+
 
 
 @end
@@ -74,11 +87,11 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
-    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
-    if (str)
-    {
-        [self setUpGetRate];
-    }
+//    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+//    if (str)
+//    {
+//        [self setUpGetRate];
+//    }
     
 }
 
@@ -128,15 +141,67 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
 //        NSLog(@"%@", error);
 //
 //    }];
-    
+    NSLog(@"%@", userid);
     [AFOwnerHTTPSessionManager getAddToken:GETChildAgentArea Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
         NSString *code = responseObject[@"code"];
         if ([code isEqualToString:@"0000"])
         {
-            _maxRate = responseObject[@"Data"][@"max"];
-            _minRate = responseObject[@"Data"][@"min"];
-            _interval = responseObject[@"Data"][@"interval"];
+            //创建一个可变数组
+            _mutableKeysArr = [NSMutableArray arrayWithCapacity:1];
+            NSArray *allKeys = [responseObject[@"Data"] allKeys];
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1001"])
+                {
+                    NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
+                    _maxRate = responseObject[@"Data"][@"1001"][@"max"];
+                    _minRate = responseObject[@"Data"][@"1001"][@"min"];
+                    _interval = responseObject[@"Data"][@"1001"][@"interval"];
+                    
+                    for (double i = [_minRate doubleValue] * 100; i <= [_maxRate doubleValue] * 100; i = i + [_interval doubleValue])
+                    {
+                        NSString *pp = [NSString stringWithFormat:@"%lf", i];
+                        NSString *str = [DCSpeedy changeFloat:pp];
+                        NSString *strr = [NSString stringWithFormat:@"小额%@", str];
+                        NSLog(@"%@", strr);
+                        [mutableRate addObject:strr];
+                    }
+                    [self.mutableKeysArr addObject:mutableRate];
+                }
+            }
+            
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1002"])
+                {
+                    
+                }
+            }
+            
+            for(NSString *key in allKeys)
+            {
+                if ([key isEqualToString:@"1003"])
+                {
+                    NSMutableArray *mutableCard = [NSMutableArray arrayWithCapacity:1];
+                    _maxCardRate = responseObject[@"Data"][@"1003"][@"max"];
+                    _minCardRate = responseObject[@"Data"][@"1003"][@"min"];
+                    _cardInterval = responseObject[@"Data"][@"1003"][@"interval"];
+                    
+                    for (double i = [_minCardRate doubleValue] * 100; i <= [_maxCardRate doubleValue] * 100; i = i + [_interval doubleValue])
+                    {
+                        NSString *pp = [NSString stringWithFormat:@"%lf", i];
+                        NSString *str = [DCSpeedy changeFloat:pp];
+                        NSString *strr = [NSString stringWithFormat:@"信用卡%@", str];
+                        NSLog(@"%@", strr);
+                        [mutableCard addObject:strr];
+                    }
+                    [self.mutableKeysArr addObject:mutableCard];
+                }
+            }
+            
+            [self setUpChooseRate];
+            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -197,7 +262,7 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row == 2) ? 160 : 90;
+    return (indexPath.row == 2) ? 160 : 110;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,7 +279,7 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
         NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
         if (str)
         {
-            [self setUpChooseRate];
+            [self setUpGetRate];
         }
         else
         {
@@ -225,26 +290,64 @@ static NSString *const LYShareSocialCellID = @"LYShareSocialCell";
 
 }
 
+#pragma mark - 选择小额和信用卡费率
 -(void)setUpChooseRate
 {
-    NSMutableArray *mutableRate = [NSMutableArray arrayWithCapacity:1];
 //    double rate = [_currentRate doubleValue];
-    
-    for (double i = [_minRate doubleValue] * 100 + [_interval doubleValue]; i <= [_maxRate doubleValue] * 100; i = i + [_interval doubleValue])
+    NSLog(@"%@ %@", _maxRate, _minRate);
+    if ([DCSpeedy isBlankString:_minRate] || [DCSpeedy isBlankString:_maxRate])
     {
-        NSString *pp = [NSString stringWithFormat:@"%lf", i];
-        NSString *str = [DCSpeedy changeFloat:pp];
-        NSLog(@"%@", str);
-        [mutableRate addObject:str];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [DCSpeedy alertMes:@"服务器维护,请稍后"];
+        });
+    }
+    else
+    {
+        
+        __weak typeof(self) weakSelf = self;
+        
+        if (self.mutableKeysArr.count == 1)
+        {
+            [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:self.mutableKeysArr defaultSelValue:@[self.mutableKeysArr[0][0]] isAutoSelect:NO resultBlock:^(id selectValue) {
+                NSLog(@"%@", selectValue[0]);
+                LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
+                NSString *str = [NSString stringWithFormat:@"%@,0", [selectValue[0] substringFromIndex:2]];
+                NSLog(@"%@", str);
+                NSString *strr = [str URLEncodedString];
+                NSLog(@"%@", strr);
+                friendVC.rateStr = strr;
+                [weakSelf.navigationController pushViewController:friendVC animated:YES];
+            }];
+        }
+        else if (self.mutableKeysArr.count == 2)
+        {
+            [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:self.mutableKeysArr defaultSelValue:@[self.mutableKeysArr[0][0], self.mutableKeysArr[1][0]] isAutoSelect:NO resultBlock:^(id selectValue) {
+                NSLog(@"%@  %@", selectValue[0], selectValue[1]);
+                LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
+                NSString *str = [NSString stringWithFormat:@"%@,%@", [selectValue[0] substringFromIndex:2], [selectValue[1] substringFromIndex:3]];
+                NSLog(@"%@", str);
+                NSString *strr = [str URLEncodedString];
+                NSLog(@"%@", strr);
+                friendVC.rateStr = strr;
+                [weakSelf.navigationController pushViewController:friendVC animated:YES];
+            }];
+        }
+        else if (self.mutableKeysArr.count == 3)
+        {
+            
+        }
+        
+        
     }
     
-    __weak typeof(self) weakSelf = self;
-    [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:mutableRate defaultSelValue:mutableRate[0] isAutoSelect:NO resultBlock:^(id selectValue) {
-        NSLog(@"%@", selectValue);
-        LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
-        friendVC.rateStr = selectValue;
-        [weakSelf.navigationController pushViewController:friendVC animated:YES];
-    }];
+    
+    
+//    [BRStringPickerView showStringPickerWithTitle:@"选择费率" dataSource:mutableRate defaultSelValue:mutableRate[0] isAutoSelect:NO resultBlock:^(id selectValue) {
+//        NSLog(@"%@", selectValue);
+//        LYShareFriendController *friendVC = [[LYShareFriendController alloc] init];
+//        friendVC.rateStr = selectValue;
+//        [weakSelf.navigationController pushViewController:friendVC animated:YES];
+//    }];
     
 }
 

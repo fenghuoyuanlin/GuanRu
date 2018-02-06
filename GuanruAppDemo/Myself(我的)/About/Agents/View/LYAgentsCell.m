@@ -24,8 +24,12 @@
 @property(nonatomic, strong) UILabel *agentLabel;
 //时间
 @property(nonatomic, strong) UIButton *editBtn;
-//费率
+//小额费率
 @property(nonatomic, strong) UILabel *rateLabel;
+//大额费率
+@property(nonatomic, strong) UILabel *bigRateLabel;
+//信用卡费率
+@property(nonatomic, strong) UILabel *cardRateLabel;
 
 @end
 
@@ -57,11 +61,30 @@
     [self addSubview:_editBtn];
     
     [_editBtn addTarget:self action:@selector(editBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIFont *font = nil;
+    if (iphone5)
+    {
+        font = PFR12Font;
+    }
+    else
+    {
+        font = PFR14Font;
+    }
     
     _rateLabel = [[UILabel alloc] init];
-    _rateLabel.font = PFR14Font;
+    _rateLabel.font = font;
     _rateLabel.textColor = RGB(239, 99, 117);
     [self addSubview:_rateLabel];
+    
+    _bigRateLabel = [[UILabel alloc] init];
+    _bigRateLabel.font = font;
+    _bigRateLabel.textColor = RGB(239, 99, 117);
+    [self addSubview:_bigRateLabel];
+    
+    _cardRateLabel = [[UILabel alloc] init];
+    _cardRateLabel.font = font;
+    _cardRateLabel.textColor = RGB(239, 99, 117);
+    [self addSubview:_cardRateLabel];
     
 }
 
@@ -92,6 +115,16 @@
         make.top.equalTo(_agentLabel.bottom).offset(DCMargin);
     }];
     
+    [_bigRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.centerY.equalTo(_rateLabel.centerY);
+    }];
+    
+    [_cardRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(-DCMargin);
+        make.centerY.equalTo(_rateLabel.centerY);
+    }];
+    
     [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-DCMargin);
         make.centerY.equalTo(_agentLabel.centerY);
@@ -108,6 +141,22 @@
     NSString *str = [NSString stringWithFormat:@"%.2f", [agentItem.rate_value doubleValue] * 100];
     NSString *sttt = [DCSpeedy changeFloat:str];
     _rateLabel.text = [NSString stringWithFormat:@"%@%@%@", @"小额费率:", sttt, @"%"];
+    
+    NSString *big = [NSString stringWithFormat:@"%.2f", [agentItem.large_value doubleValue] * 100];
+    NSString *bigg = [DCSpeedy changeFloat:big];
+    _bigRateLabel.text = [NSString stringWithFormat:@"%@%@%@", @"大额费率:", bigg, @"%"];
+    
+    if ([DCSpeedy isBlankString:agentItem.credit_value])
+    {
+        _cardRateLabel.text = [NSString stringWithFormat:@"%@%@", @"信用卡费率:",  @"--"];
+    }
+    else
+    {
+        NSString *card = [NSString stringWithFormat:@"%.2f", [agentItem.credit_value doubleValue] * 100];
+        NSString *cardd = [DCSpeedy changeFloat:card];
+        _cardRateLabel.text = [NSString stringWithFormat:@"%@%@%@", @"信用卡费率:", cardd, @"%"];
+    }
+    
 }
 
 #pragma mark - 点击事件

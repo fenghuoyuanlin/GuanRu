@@ -60,46 +60,6 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>花旗银行</string>
-		<key>imageName</key>
-		<string>中国银行</string>
-		<key>message</key>
-		<string>优惠多多</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>招商银行信用卡</string>
-		<key>imageName</key>
-		<string>招商银行</string>
-		<key>message</key>
-		<string>中国信用卡发卡量最高的银行，9元积分活动正在火热进行中</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>民生银行信用卡</string>
-		<key>imageName</key>
-		<string>民生银行</string>
-		<key>message</key>
-		<string>免年费，全球免费WiFi，下卡率高</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>上海银行信用卡</string>
-		<key>imageName</key>
-		<string>兴业银行</string>
-		<key>message</key>
-		<string>上海银行柯南卡是“套现”形式，即一张JCB单币种信用卡与一张银联单币种信用卡</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>广州银行信用卡</string>
-		<key>imageName</key>
-		<string>广发银行</string>
-		<key>message</key>
-		<string>最长56天免息</string>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>华夏银行信用卡</string>
 		<key>imageName</key>
 		<string>工商银行</string>

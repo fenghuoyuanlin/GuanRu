@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LYFacePayController : UIViewController
+//判断码
+@property(nonatomic, strong) NSString *isJudgeCode;
 
 @end

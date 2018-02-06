@@ -216,10 +216,41 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
             NSString *code = responseObject[@"code"];
             if ([code isEqualToString:@"0000"])
             {
+                //小额
                 NSString *rate = responseObject[@"Data"][@"AgentRate"];
+                
                 NSString *str = [NSString stringWithFormat:@"%lf", [rate doubleValue] * 100];
-                NSString *fl = [DCSpeedy changeFloat:str];
-                [[NSUserDefaults standardUserDefaults] setObject:fl forKey:@"rate"];
+                NSString *f1 = [DCSpeedy changeFloat:str];
+                
+                //大额
+                NSString *largeRate = responseObject[@"Data"][@"AgentRate_arge"];
+                NSString *f2 = nil;
+                if ([DCSpeedy isBlankString:largeRate])
+                {
+                    f2 = @"--";
+                }
+                else
+                {
+                    NSString *largeStr = [NSString stringWithFormat:@"%lf", [largeRate doubleValue] * 100];
+                    f2 = [DCSpeedy changeFloat:largeStr];
+                }
+                
+                //信用卡
+                NSString *creditRate = responseObject[@"Data"][@"AgentRate_credit"];
+                NSString *f3 = nil;
+                if ([DCSpeedy isBlankString:largeRate])
+                {
+                    f3 = @"--";
+                }
+                else
+                {
+                    NSString *creditStr = [NSString stringWithFormat:@"%lf", [creditRate doubleValue] * 100];
+                    f3 = [DCSpeedy changeFloat:creditStr];
+                }
+                
+                [[NSUserDefaults standardUserDefaults] setObject:f1 forKey:@"rate"];
+                [[NSUserDefaults standardUserDefaults] setObject:f2 forKey:@"largeRate"];
+                [[NSUserDefaults standardUserDefaults] setObject:f3 forKey:@"creditRate"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -338,9 +369,7 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
         NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
         if (str)
         {
-            NSString *rate = [[NSUserDefaults standardUserDefaults] objectForKey:@"rate"];
-            NSString *rate1 = [NSString stringWithFormat:@"%@%@", rate, @"%"];
-            [DCSpeedy alertMes:[NSString stringWithFormat:@"您的费率是:%@", rate1]];
+            [self referencePeople];
         }
         else
         {
@@ -435,10 +464,25 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - 推荐人
+#pragma mark - 费率总括
 -(void)referencePeople
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"您的上级未打开隐私权限" preferredStyle:UIAlertControllerStyleAlert];
+    //小额
+    NSString *rate = [[NSUserDefaults standardUserDefaults] objectForKey:@"rate"];
+    NSString *rate1 = [NSString stringWithFormat:@"%@%@", rate, @"%"];
+    NSString *xiaoRate = [NSString stringWithFormat:@"小额费率是:%@", rate1];
+    //大额
+    NSString *largeRate = [[NSUserDefaults standardUserDefaults] objectForKey:@"largeRate"];
+    NSString *rate2 = [NSString stringWithFormat:@"%@%@", largeRate, @"%"];
+    NSString *bigRate = [NSString stringWithFormat:@"大额费率是:%@", rate2];
+    //信用卡
+    NSString *creditRate = [[NSUserDefaults standardUserDefaults] objectForKey:@"creditRate"];
+    NSString *rate3 = [NSString stringWithFormat:@"%@%@", creditRate, @"%"];
+    NSString *xinRate = [NSString stringWithFormat:@"信用卡费率是:%@", rate3];
+    
+    NSString *message = [NSString stringWithFormat:@"%@\n%@\n%@", xiaoRate, bigRate, xinRate];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"您的费率" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

@@ -50,4 +50,6 @@
 - (NSString *)base64DecodedString;
 - (NSData *)base64DecodedData;
 
+- (NSString *)URLEncodedString;
+
 @end

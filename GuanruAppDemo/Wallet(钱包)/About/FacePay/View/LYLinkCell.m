@@ -22,8 +22,6 @@
 @interface LYLinkCell ()
 //名称
 @property(nonatomic, strong) UILabel *titleLabel;
-//普通用户
-@property(nonatomic, strong) UIButton *commenBtn;
 //百分比
 @property(nonatomic, strong) UILabel *percentLabel;
 //间隔线
@@ -58,7 +56,7 @@
     
     _commenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_commenBtn setImage:[UIImage imageNamed:@"商户"] forState:0];
-    [_commenBtn setTitle:@"普通商户" forState:0];
+//    [_commenBtn setTitle:@"普通商户" forState:0];
     [_commenBtn setTitleColor:RGB(132, 132, 132) forState:0];
     _commenBtn.titleLabel.font = PFR14Font;
     [self addSubview:_commenBtn];

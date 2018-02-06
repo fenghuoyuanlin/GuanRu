@@ -85,7 +85,7 @@ static NSString *const LYDocumentsCellID = @"LYDocumentsCell";
     __weak typeof(self) weakSelf = self;
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
     NSDictionary *dic = @{
-                          @"agentid": userid,
+                          @"agentid" : userid,
                           @"rate" : _rateStr
                           };
     [AFOwnerHTTPSessionManager getAddToken:GetAuthQrCodeUrl Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {

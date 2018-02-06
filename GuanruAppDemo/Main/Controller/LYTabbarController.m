@@ -30,20 +30,21 @@
 
 @implementation LYTabbarController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpTabBar];
     [self addDcChildViewContorller];
      self.selectedViewController = [self.viewControllers objectAtIndex:2];
 }
-//适配iphonex的tabbar
+//适配iphonex的tabbar(自定义的tabbar在self.view.bounds.size.height-KSafeBarHeight - 49 - 0.5中的必须多减去个任意数值，它的点击范围才能有效，不知道为啥)
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     for (UIView *view in self.view.subviews) {
         if ([view isKindOfClass:[UITabBar class]]) {
             //此处注意设置 y的值 不要使用屏幕高度 - 49 ，因为还有tabbar的高度 ，用当前tabbarController的View的高度 - 49即可
-            view.frame = CGRectMake(view.frame.origin.x, self.view.bounds.size.height-KSafeBarHeight - 49, view.frame.size.width, 49);
+            view.frame = CGRectMake(view.frame.origin.x, self.view.bounds.size.height-KSafeBarHeight - 49 - 0.5, view.frame.size.width, 49);
         }
     }
     // 此处是自定义的View的设置 如果使用了约束 可以不需要设置下面,_bottomView的frame
@@ -108,6 +109,8 @@
         
     }];
 }
+
+
 /*
 #pragma mark - Navigation
 

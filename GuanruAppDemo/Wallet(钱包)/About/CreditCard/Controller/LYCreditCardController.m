@@ -10,26 +10,27 @@
 // Controllers
 
 // Models
-#import "LYCreditItem.h"
+
 // Views
-#import "LYCreditCardCell.h"
-#import "LYRefreshHeader.h"
-#import "LYRefreshFooter.h"
+#import "LYFacePayCell.h"
 // Vendors
 #import <MJExtension.h>
-#import <MJRefresh.h>
 // Categories
 
 // Others
 
-@interface LYCreditCardController ()<UITableViewDelegate, UITableViewDataSource>
-@property(nonatomic, strong) UITableView *tableView;
+@interface LYCreditCardController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property(nonatomic, strong) NSMutableArray<LYCreditItem *> *creditArr;
+//tableView
+@property(nonatomic, strong) UITableView *tableView;
+//存储tableView的所有NSIndexPath,以便在其他地方可以自由调取对应的cell
+@property(nonatomic, strong) NSMutableArray *indexPathArr;
+//下一步按钮
+@property(nonatomic, strong) UIButton *continueBtn;
 
 @end
 
-static NSString *const LYCreditCardCellID = @"LYCreditCardCell";
+static NSString *const LYFacePayCellID = @"LYFacePayCell";
 
 @implementation LYCreditCardController
 
@@ -39,84 +40,102 @@ static NSString *const LYCreditCardCellID = @"LYCreditCardCell";
     if (!_tableView)
     {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.frame = CGRectMake(0, 0, ScreenW, ScreenH - 64);
+        _tableView.frame = CGRectMake(0, 0, ScreenW, 120);
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [UIView new];
+        _tableView.scrollEnabled = NO;
+        //        _tableView.tableFooterView = [UIView new];
+        //        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
         
         //注册
-        [_tableView registerClass:[LYCreditCardCell class] forCellReuseIdentifier:LYCreditCardCellID];
+        [_tableView registerClass:[LYFacePayCell class] forCellReuseIdentifier:LYFacePayCellID];
     }
     return _tableView;
 }
 
+-(NSMutableArray *)indexPathArr
+{
+    if (!_indexPathArr)
+    {
+        _indexPathArr = [NSMutableArray arrayWithCapacity:1];
+    }
+    return _indexPathArr;
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpBase];
-    [self setUpData];
-    [self setUpRefreshHeader];
+    self.view.backgroundColor = RGB(240, 239, 245);
+    self.title = @"新增链接";
+    self.tableView.backgroundColor = RGB(240, 239, 245);
+    [self setUpTopAndBottom];
+    
 }
 
-#pragma mark - initial
--(void)setUpBase
+#pragma mark - 下一步按钮
+-(void)setUpTopAndBottom
 {
-    self.view.backgroundColor = DCBGColor;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.backgroundColor = DCBGColor;
-    self.title = @"信用卡办理";
-}
-
-#pragma mark - 信用卡数据
--(void)setUpData
-{
-    _creditArr = [LYCreditItem mj_objectArrayWithFilename:@"CreditCard.plist"];
-}
-
-#pragma mark - 上拉和下拉刷新
--(void)setUpRefreshHeader
-{
-    __weak typeof(self) weakSelf = self;
-    //仿微博的下拉刷新
-    self.tableView.mj_header= [LYRefreshHeader headerWithRefreshingBlock:^{
-        
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-            // 结束刷新
-            [weakSelf.tableView.mj_header endRefreshing];
-        });
+    
+    _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _continueBtn.backgroundColor = RGBA(50, 112, 229, 1.0);
+    _continueBtn.layer.cornerRadius = 20.0;
+    _continueBtn.layer.masksToBounds = YES;
+    [_continueBtn setTitle:@"+确认添加" forState:0];
+    _continueBtn.titleLabel.font = PFR18Font;
+    [self.view addSubview:_continueBtn];
+    [_continueBtn addTarget:self action:@selector(continueBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_continueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(15);
+        make.right.equalTo(-15);
+        make.top.equalTo(120 + 30);
+        make.height.equalTo(45);
     }];
-    //进入界面就开始刷新一下
-    [self.tableView.mj_header beginRefreshing];
-    
-    // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-            
-            // 结束刷新
-            [weakSelf.tableView.mj_footer endRefreshing];
-        });
-    }];
-    // 默认先隐藏footer
-    self.tableView.mj_footer.hidden = NO;
-    
     
 }
+
+#pragma mark - 资料界面数据
 
 #pragma mark - <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _creditArr.count;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LYCreditCardCell *cell = [tableView dequeueReusableCellWithIdentifier:LYCreditCardCellID];
-    cell.creditItem = _creditArr[indexPath.row];
+    LYFacePayCell *cell = [tableView dequeueReusableCellWithIdentifier:LYFacePayCellID];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row == 2)
+    {
+        cell.textField.delegate = self;
+    }
+    if (indexPath.row == 0)
+    {
+        cell.flag = YES;
+        
+    }
+    else
+    {
+        cell.flag = NO;
+        NSArray *titles = @[@"店名:", @"点位:"];
+        cell.titleLabel.text = titles[indexPath.row - 1];
+        if (indexPath.row == 2)
+        {
+            cell.textField.placeholder = @"小于25个点且为0.5的整数倍";
+        }
+        
+    }
+    
+    [self.indexPathArr addObject:indexPath];
+    
+    //    if (indexPath.row == 0)
+    //    {
+    //        _registerCell = cell;
+    //    }
+    
     return cell;
 }
 
@@ -124,12 +143,55 @@ static NSString *const LYCreditCardCellID = @"LYCreditCardCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 40;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark - 点击事件
+
+-(void)continueBtnClick
 {
+    NSLog(@"点击了下一步");
+    
+    LYFacePayCell *cellOne = [self.tableView cellForRowAtIndexPath:self.indexPathArr[1]];
+    NSLog(@"%@", cellOne.textField.text);
+    LYFacePayCell *cellTwo = [self.tableView cellForRowAtIndexPath:self.indexPathArr[2]];
+    NSLog(@"%@", cellTwo.textField.text);
+    if (![DCSpeedy isBlankString:cellOne.textField.text] && ![DCSpeedy isBlankString:cellTwo.textField.text])
+    {
+        if ([cellTwo.textField.text doubleValue] > 25)
+        {
+            [DCSpeedy alertMes:@"输入的点数小于等于25"];
+        }
+        else if (fmod([cellTwo.textField.text doubleValue],0.5) == 0)
+        {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+                [DCSpeedy alertMes:@"亲暂无权限"];
+            });
+        }
+        else
+        {
+            [DCSpeedy alertMes:@"请输入0.5的倍数"];
+        }
+        
+        
+    }
+    else
+    {
+        [DCSpeedy alertMes:@"请输入店名或点数"];
+    }
+    
+    
+    
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 /*
 #pragma mark - Navigation
 

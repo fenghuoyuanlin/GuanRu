@@ -104,15 +104,6 @@
         if(resCode == 0){
             NSLog(@"registrationID获取成功：%@",registrationID);
             [[NSUserDefaults standardUserDefaults] setObject:registrationID forKey:@"registrationID"];
-            NSArray *mArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"mutableArr"];
-            if (mArr.count == 0)
-            {
-                NSMutableArray *mutableArr = [NSMutableArray arrayWithCapacity:1];
-                [[NSUserDefaults standardUserDefaults] setObject:mutableArr forKey:@"mutableArr"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:mArr forKey:@"mutableArr"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
             
         }
         else{

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LYLinkController : UIViewController
+//判断跳转相应的界面
+@property(nonatomic, strong) NSString *judeCode;
 
 @end
