@@ -50,7 +50,7 @@
     [self addSubview:_topLine];
     
     NSArray *titles = @[@"不及时到账?",
-                        @"冻结不能体现?"
+                        @"冻结不能提现?"
                         ];
     NSArray *btnts = @[@"[账单]",
                        @"[余额]"

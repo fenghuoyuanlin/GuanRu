@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375528"
+            timestampString = "541324193.0989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375589"
+            timestampString = "541324193.099221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375631"
+            timestampString = "541324193.0994461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375671"
+            timestampString = "541324193.099665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375708"
+            timestampString = "541324193.0998811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "143"
@@ -144,11 +144,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
-            timestampString = "538973270.375744"
+            timestampString = "541324193.100088"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
@@ -170,6 +170,38 @@
             startingLineNumber = "90"
             endingLineNumber = "90"
             landmarkName = "-clickPublish:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
+            timestampString = "541324193.100316"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-zdyNoticaton"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuanruAppDemo/AppDelegate/AppDelegate.m"
+            timestampString = "541324193.100528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-networkDidReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -211,7 +211,7 @@ static NSString *const LYServiceItemCellID = @"LYServiceItemCell";
     [alertController addAction:[UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         NSLog(@"点击确认");
-        NSString *str = @"tel://400-0687-666";
+        NSString *str = @"tel://0571-28827446";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }]];

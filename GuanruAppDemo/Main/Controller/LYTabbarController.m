@@ -18,6 +18,7 @@
 // Categories
 
 // Others
+
 @interface LYTabbarController ()
 
 @end
@@ -37,6 +38,7 @@
     [self addDcChildViewContorller];
      self.selectedViewController = [self.viewControllers objectAtIndex:2];
 }
+
 //适配iphonex的tabbar(自定义的tabbar在self.view.bounds.size.height-KSafeBarHeight - 49 - 0.5中的必须多减去个任意数值，它的点击范围才能有效，不知道为啥)
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];

@@ -262,7 +262,8 @@ static NSString *const LYRegisterCellID = @"LYRegisterCell";
         NSDictionary *dic = @{
                               @"phone": cell.textField.text,
                               @"ipAddress": @"",
-                              @"blackbox" : @""
+                              @"blackbox" : @"",
+                              @"type" :@"1"
                               };
         
         [AFOwnerHTTPSessionManager getAddToken:RegisterCode Parameters:dic
