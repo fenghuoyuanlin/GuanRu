@@ -1493,6 +1493,7 @@
 		7C7BEA6FD76ABA1BFF215F707870B5AF /* ZXMathUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXMathUtils.h; path = ZXingObjC/common/detector/ZXMathUtils.h; sourceTree = "<group>"; };
 		7C987E4D802375EBFBDF84B57ABDDD86 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
 		7CAC084E26E57C1C00B3973E59D5EACD /* ZXEncodeHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEncodeHints.h; path = ZXingObjC/core/ZXEncodeHints.h; sourceTree = "<group>"; };
+		7CF4D9336F66ED4BC534CC61B5FD8274 /* libjpush-ios-3.0.8.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.8.a"; sourceTree = "<group>"; };
 		7D74CBAD6253429C68A5E1A692568274 /* ZXBitSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXBitSource.h; path = ZXingObjC/common/ZXBitSource.h; sourceTree = "<group>"; };
 		7DA8ADD2D534FA272197A98F95B54C54 /* ZXUPCEANExtension2Support.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXUPCEANExtension2Support.h; path = ZXingObjC/oned/ZXUPCEANExtension2Support.h; sourceTree = "<group>"; };
 		7DC8AA38D7D44EA4FB714931346902A7 /* ZXPDF417Common.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXPDF417Common.m; path = ZXingObjC/pdf417/ZXPDF417Common.m; sourceTree = "<group>"; };
@@ -1548,7 +1549,6 @@
 		8BFE2A1C50BD867589A43C6D9058F8ED /* libZXingObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZXingObjC.a; path = libZXingObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2E90B62B42FF565696F1114E372569 /* ZXPDF417Common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Common.h; path = ZXingObjC/pdf417/ZXPDF417Common.h; sourceTree = "<group>"; };
 		8C421031046438BA8EAD9DFD307D0AC5 /* ZXPDF417Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Reader.h; path = ZXingObjC/pdf417/ZXPDF417Reader.h; sourceTree = "<group>"; };
-		8C6100DE615EF24E0B148CEC21C653EF /* libjpush-ios-3.0.2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.2.a"; sourceTree = "<group>"; };
 		8C90D51964E99E3D7CEE7702E58BA5E3 /* ZXEmailAddressResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEmailAddressResultParser.m; path = ZXingObjC/client/result/ZXEmailAddressResultParser.m; sourceTree = "<group>"; };
 		8CF491BB9ED1A964AA21CF1A8F7C641A /* ZXSMSMMSResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXSMSMMSResultParser.h; path = ZXingObjC/client/result/ZXSMSMMSResultParser.h; sourceTree = "<group>"; };
 		8D125C560C450758839EA6DCC21ED472 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
@@ -1586,6 +1586,7 @@
 		9846BEB5A95E3E8B5EF4EDA76A1F2B4D /* ZXMultiDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMultiDetector.m; path = ZXingObjC/qrcode/multi/detector/ZXMultiDetector.m; sourceTree = "<group>"; };
 		996E7AF9D4B17AE7967F2812226A89FF /* ZXByteArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXByteArray.h; path = ZXingObjC/common/ZXByteArray.h; sourceTree = "<group>"; };
 		9975CF9F17B6F888CEE0103EAA6B2024 /* ZXDataMatrixSymbolInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixSymbolInfo.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixSymbolInfo.h; sourceTree = "<group>"; };
+		9985B3515F7987793BAE7283DE74846A /* libjcore-ios-1.1.7.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.7.a"; sourceTree = "<group>"; };
 		998B90E3D83FE85AC3CE72308108174F /* TZImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImagePickerController.m; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.m; sourceTree = "<group>"; };
 		99D2232473D10B27129AF6E8AB5946C2 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoNormalFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
 		99F2F19EBE985210182255E781E2472F /* NSFileHandle+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSFileHandle+RACSupport.m"; path = "ReactiveCocoaFramework/ReactiveCocoa/NSFileHandle+RACSupport.m"; sourceTree = "<group>"; };
@@ -1769,7 +1770,6 @@
 		CD897D55A28DD175041EE35CAFDDC1C9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		CDBEEF9A40D03B217A956F416ED3C0BE /* ZXEmailDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEmailDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXEmailDoCoMoResultParser.m; sourceTree = "<group>"; };
 		CDC912E9CB4545390FDA79713CDF93D4 /* ZXEANManufacturerOrgSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEANManufacturerOrgSupport.m; path = ZXingObjC/oned/ZXEANManufacturerOrgSupport.m; sourceTree = "<group>"; };
-		CDCEE6D5AE78647A743491BAD8B752A2 /* libjcore-ios-1.1.6.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.6.a"; sourceTree = "<group>"; };
 		CDD331AB4640F6E2CF2811492953F449 /* ZXAI013103decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAI013103decoder.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI013103decoder.h; sourceTree = "<group>"; };
 		CECAA39FF71625043C99A15908AF2A66 /* MJRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-prefix.pch"; sourceTree = "<group>"; };
 		CF8103DA52906416021E194EA097241B /* ZXDataMatrixHighLevelEncoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDataMatrixHighLevelEncoder.m; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixHighLevelEncoder.m; sourceTree = "<group>"; };
@@ -2757,10 +2757,10 @@
 			path = "../Target Support Files/FMDB";
 			sourceTree = "<group>";
 		};
-		3333B49706FD728B08FA38EF38FB036E /* Frameworks */ = {
+		320B2C837FD40091640955E019DB3BC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CDCEE6D5AE78647A743491BAD8B752A2 /* libjcore-ios-1.1.6.a */,
+				9985B3515F7987793BAE7283DE74846A /* libjcore-ios-1.1.7.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2868,6 +2868,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		5F148EC576D53421A5B28987AB691EBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CF4D9336F66ED4BC534CC61B5FD8274 /* libjpush-ios-3.0.8.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6049601F481AD4AE2D3B15B8391B36C3 /* no-arc */ = {
 			isa = PBXGroup;
 			children = (
@@ -2899,7 +2907,7 @@
 		7415AF0A831FD7BA93FE15B406903A78 /* JCore */ = {
 			isa = PBXGroup;
 			children = (
-				3333B49706FD728B08FA38EF38FB036E /* Frameworks */,
+				320B2C837FD40091640955E019DB3BC4 /* Frameworks */,
 			);
 			name = JCore;
 			path = JCore;
@@ -3198,14 +3206,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		92E3130BBDC138CD08C40559CD9D1C6B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8C6100DE615EF24E0B148CEC21C653EF /* libjpush-ios-3.0.2.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		99F2874007C8F7F35EB6E522A234881C /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -3476,7 +3476,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE9293CB70E0DED5CA5031D0C8242F2 /* JPUSHService.h */,
-				92E3130BBDC138CD08C40559CD9D1C6B /* Frameworks */,
+				5F148EC576D53421A5B28987AB691EBE /* Frameworks */,
 			);
 			name = JPush;
 			path = JPush;

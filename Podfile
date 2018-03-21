@@ -14,6 +14,6 @@ target 'GuanruAppDemo' do
   pod 'TZImagePickerController'
   pod 'ZXingObjC'
   pod 'ReactiveCocoa', '2.3.1'
-  pod 'JPush', '3.0.2'
+  pod 'JPush', '3.0.8'
 end
 

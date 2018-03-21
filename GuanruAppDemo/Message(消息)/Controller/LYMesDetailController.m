@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"公告详情";
+    self.title = _detailTitle;
     
     _detailLabel = [[UILabel alloc] init];
     _detailLabel.text = _detailStr;

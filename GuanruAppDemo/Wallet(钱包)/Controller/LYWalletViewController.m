@@ -58,6 +58,8 @@
 @property(nonatomic, strong) NSMutableArray<LYCardItem *> *cardArr;
 
 @property(nonatomic, strong) LYWalletHeader *headerView;
+//控制底部View消失与重现
+@property(nonatomic, strong) NSString *disSign;
 
 @end
 
@@ -162,6 +164,8 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
     
     self.navigationController.navigationBar.hidden = YES;
     
+    [self appUpDate];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -181,9 +185,9 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = DCBGColor;
 //    [self.view addSubview:self.headerView];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = DCBGColor;
     [self setUpData];
 }
 
@@ -197,7 +201,7 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 4;
+    return ([_disSign integerValue] == 0) ? 4 : 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -213,11 +217,47 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
     {
         __weak typeof(self) weakSelf = self;
         LYCycleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYCycleCellID forIndexPath:indexPath];
-        cell.cycleImageClickBlock = ^{
-            LYWalletServiceController *VC = [[LYWalletServiceController alloc] init];
-            VC.urlString = @"http://f.chuandu365.com";
-            VC.title = @"川渡科技";
-            [weakSelf.navigationController pushViewController:VC animated:YES];
+        if ([_disSign integerValue] == 0)
+        {
+            cell.isChange = @"0";
+            [cell setUpUI];
+        }
+        else
+        {
+            cell.isChange = @"1";
+            [cell setUpUI];
+        }
+        
+        
+        //再刷新当前cell一下
+        //1.当前所要刷新的cell，传入要刷新的 行数 和 组数
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        //2.将indexPath添加到数组
+//        NSArray <NSIndexPath *> *indexPathArray = @[indexPath];
+//        [collectionView reloadItemsAtIndexPaths:indexPathArray];
+        cell.imageClickBlock = ^(NSInteger integer) {
+            if (integer == 0)
+            {
+                LYWalletServiceController *VC = [[LYWalletServiceController alloc] init];
+                if ([_disSign integerValue] == 0)
+                {
+                    VC.urlString = @"http://m.dai.360.cn/index/redpacket?no_scheme=1&src=baizhu101";
+                    VC.title = @"360贷款";
+                }
+                else
+                {
+                    VC.urlString = @"http://f.chuandu365.com";
+                    VC.title = @"川渡科技";
+                }
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+            }
+            else
+            {
+                LYWalletServiceController *VC = [[LYWalletServiceController alloc] init];
+                VC.urlString = @"http://f.chuandu365.com";
+                VC.title = @"川渡科技";
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+            }
         };
         gridcell = cell;
     }
@@ -305,7 +345,8 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
             footerView.questionClickBlock = ^{
                 LYWalletServiceController *serVC = [[LYWalletServiceController alloc] init];
                 serVC.title = @"常见问题";
-                serVC.urlString = @"http://www.1shouyin.com/AboutUs/question.html";
+                serVC.urlString = [NSString stringWithFormat:@"%@AboutUs/question.html", Localhost];
+//                serVC.urlString = @"http://www.1shouyin.com/AboutUs/question.html";
                 [weakSelf.navigationController pushViewController:serVC animated:YES];
             };
             reusableView = footerView;
@@ -510,6 +551,32 @@ static NSString *const LYTitleHeaderViewID = @"LYTitleHeaderView";
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+#pragma mark ====版本更新
+/**
+ *  控制底部View的消失和重现
+ */
+- (void)appUpDate
+{
+    NSDictionary *dic = @{
+                          @"editionType": @"2"
+                          };
+    __weak typeof(self) weakSelf = self;
+    [AFOwnerHTTPSessionManager get:Getedition Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+        NSString *code = responseObject[@"code"];
+        if ([code isEqualToString:@"0000"])
+        {
+            NSDictionary *dicVersion = responseObject[@"Data"];
+            _disSign = dicVersion[@"ForcedToupdate"];
+            NSLog(@"%@", _disSign);
+            [weakSelf.collectionView reloadData];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+        
+    }];
+}
 
 
 /*

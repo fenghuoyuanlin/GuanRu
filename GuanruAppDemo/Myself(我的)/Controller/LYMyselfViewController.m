@@ -387,7 +387,8 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
     else if (indexPath.section == 2 && indexPath.row == 1)
     {
         LYWalletServiceController *relateUsVc = [[LYWalletServiceController alloc] init];
-        relateUsVc.urlString = @"http://api.047104086014.gaofangh.com/AboutUs/aboutus.html";
+        relateUsVc.urlString = [NSString stringWithFormat:@"%@AboutUs/aboutus.html", Localhost];
+//        relateUsVc.urlString = @"http://api.047104086014.gaofangh.com/AboutUs/aboutus.html";
         relateUsVc.title = @"关于我们";
         [self.navigationController pushViewController:relateUsVc animated:YES];
     }
@@ -396,7 +397,8 @@ static NSString *const LYMyselfItemCellID = @"LYMyselfItemCell";
 //        [self moreSetting];
         LYWalletServiceController *serVC = [[LYWalletServiceController alloc] init];
         serVC.title = @"常见问题";
-        serVC.urlString = @"http://www.1shouyin.com/AboutUs/question.html";
+        serVC.urlString = [NSString stringWithFormat:@"%@AboutUs/question.html", Localhost];
+//        serVC.urlString = @"http://www.1shouyin.com/AboutUs/question.html";
         [self.navigationController pushViewController:serVC animated:YES];
     }
 //    else if (indexPath.row == 4)

@@ -66,7 +66,7 @@
         }
         else
         {
-            make.size.equalTo(CGSizeMake(50, 50));
+            make.size.equalTo(CGSizeMake(55, 55));
         }
         make.centerX.equalTo(self.centerX);
     }];

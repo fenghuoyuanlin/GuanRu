@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DWTabBar.h"
 @interface LYTabbarController : UITabBarController
+
+@property(nonatomic, strong) DWTabBar *tabbar;
 
 @end

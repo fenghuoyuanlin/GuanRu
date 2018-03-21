@@ -10,6 +10,7 @@
 // Controllers
 #import "LYLoginViewController.h"
 #import "LYMesDetailController.h"
+#import "LYWalletServiceController.h"
 // Models
 #import "LYMessageItem.h"
 #import "LYMessageModel.h"
@@ -28,6 +29,7 @@
 @property(nonatomic, strong) UITableView *tableView;
 
 @property(nonatomic, strong) NSMutableArray<LYMessageModel *> *messageArr;
+
 
 @end
 
@@ -58,16 +60,16 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
-    if (str)
-    {
+//    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+//    if (str)
+//    {
         [self setUpRefreshHeader];
-    }
-    else
-    {
-        [DCSpeedy alertMes:@"主人您还没有登录哦，暂时不能查看"];
-    }
-    
+//    }
+//    else
+//    {
+//        [DCSpeedy alertMes:@"主人您还没有登录哦，暂时不能查看"];
+//    }
+
 }
 
 - (void)viewDidLoad {
@@ -75,6 +77,7 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     [self setUpBase];
 //    [self setUpData];
 //    [self setUpNav];
+    
 }
 
 #pragma mark - initial
@@ -101,10 +104,10 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
 {
     NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
-    [dic setValue:userid forKey:@"agentid"];
+    [dic setValue:@"1" forKey:@"agentid"];
     NSLog(@"%@", dic);
     __weak typeof(self) weakSelf = self;
-    [AFOwnerHTTPSessionManager getAddToken:GetAgentMessage Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    [AFOwnerHTTPSessionManager get:GetAgentMessage Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
         NSString *code = responseObject[@"code"];
         if ([code isEqualToString:@"0000"])
@@ -185,9 +188,28 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LYMesDetailController *detailVC = [[LYMesDetailController alloc] init];
-    detailVC.detailStr = _messageArr[indexPath.row].Content;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    NSString *timeStamp = _messageArr[indexPath.row].Senddata;
+    NSString *nowStamp = @"1520473464";
+    NSLog(@"%@", timeStamp);
+    if ([timeStamp doubleValue] > [nowStamp doubleValue])
+    {
+        LYWalletServiceController *detailVC = [[LYWalletServiceController alloc] init];
+        detailVC.urlString = _messageArr[indexPath.row].Content;
+        detailVC.title = _messageArr[indexPath.row].Title;
+        NSLog(@"%@", _messageArr[indexPath.row].Senddata);
+        detailVC.type = @"1";
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    else
+    {
+        LYMesDetailController *detailVC = [[LYMesDetailController alloc] init];
+        detailVC.detailStr = _messageArr[indexPath.row].Content;
+        detailVC.detailTitle = _messageArr[indexPath.row].Title;
+        NSLog(@"%@", _messageArr[indexPath.row].Title);
+        NSLog(@"%@", _messageArr[indexPath.row].Senddata);
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    
 }
 
 
@@ -214,6 +236,7 @@ static NSString *const LYMessageModelCellID = @"LYMessageModelCell";
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 
 /*
 #pragma mark - Navigation

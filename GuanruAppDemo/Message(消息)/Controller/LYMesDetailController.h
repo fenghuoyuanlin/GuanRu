@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LYMesDetailController : UIViewController
-
+//标题
+@property(nonatomic, strong) NSString *detailTitle;
+//内容
 @property(nonatomic, strong) NSString *detailStr;
 
 @end

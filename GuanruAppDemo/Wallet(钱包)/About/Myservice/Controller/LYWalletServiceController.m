@@ -33,7 +33,24 @@
 - (WKWebView *)webView
 {
     if (!_webView) {
-        _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+        
+        NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+        
+        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+        [wkUController addUserScript:wkUScript];
+        
+        WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+        wkWebConfig.userContentController = wkUController;
+    
+        if ([_type isEqualToString:@"1"])
+        {
+            _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:wkWebConfig];
+        }
+        else
+        {
+            _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+        }
         _webView.frame = CGRectMake(0, 0, ScreenW, ScreenH - 64);
         _webView.navigationDelegate = self;
         [self.view addSubview:_webView];
@@ -77,8 +94,27 @@
 
 - (void)setUpGoodsParticularsWKWebView
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
-    [self.webView loadRequest:request];
+    if ([_urlString hasPrefix:@"http"])
+    {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
+        [self.webView loadRequest:request];
+    }
+    else
+    {
+//        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+//                           "<head> \n"
+//                           "<style type=\"text/css\"> \n"
+//                           "body {font-size:36px;}\n"
+//                           "</style> \n"
+//                           "</head> \n"
+//                           "<body>"
+//                           "<script type='text/javascript'>"
+//
+//                           "</script>%@"
+//                           "</body>"
+//                           "</html>",self.urlString];
+        [self.webView loadHTMLString:self.urlString baseURL:nil];
+    }
 }
 
 #pragma mark - WKNavigationDelegate

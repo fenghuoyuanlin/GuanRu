@@ -84,4 +84,6 @@
 
 @property(nonatomic, strong) NSString *validityTimeDataKey;
 
+@property(nonatomic, strong) NSString *productid;
+
 @end

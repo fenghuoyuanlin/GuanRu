@@ -115,7 +115,16 @@
     _messageItem = messageItem;
     _imageNameView.image = [UIImage imageNamed:@"公告"];
     _titleLabel.text = messageItem.Title;
-    _messageLabel.text = messageItem.Content;
+    NSString *nowStamp = @"1520473464";
+    NSString *timeStamp = messageItem.Senddata;
+    if ([timeStamp doubleValue] > [nowStamp doubleValue])
+    {
+        _messageLabel.text = messageItem.Introduction;
+    }
+    else
+    {
+        _messageLabel.text = messageItem.Content;
+    }
     _dateLabel.text = [DCSpeedy timeStampToStr:messageItem.Senddata];
     
 }

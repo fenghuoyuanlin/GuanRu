@@ -12,6 +12,9 @@
 #import "LYUserInfo.h"
 #import "LYForceUpdateView.h"
 #import "OpenShareHeader.h"
+#import "LYWalletServiceController.h"
+#import "LYNavigationController.h"
+#import "LYSkipViewController.h"
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -19,13 +22,15 @@
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate, UNUserNotificationCenterDelegate>
 
 @property(nonatomic, strong) LYTabbarController *tabbarController;
 
 @property (nonatomic, strong) LYForceUpdateView *view;//强更视图
 
 @property(nonatomic, strong) NSString *appleId;
+//通知的内容以及格式
+@property (nonatomic, strong) UNMutableNotificationContent *notiContent;
 
 @end
 
@@ -60,7 +65,6 @@
     else
     {
         LYGuidePageController *guideVC = [[LYGuidePageController alloc] init];
-        
         self.window.rootViewController = guideVC;
     }
     
@@ -69,8 +73,29 @@
     
     //极光推送
     [self JpushnoticationWithLanchOptions:launchOptions];
-    //自定义
+    //自定义消息
 //    [self zdyNoticaton];
+    
+    //添加本地通知
+    //如果已经获得发送通知哦的授权则创建本地通知，否则请求授权（注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置）
+    //iOS10.0后需要设置一下通知的类型
+    //注册通知
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    center.delegate = self;
+//    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//        if (granted) {
+//            NSLog(@"request authorization successed!");
+//        }
+//    }];
+//    //之前注册推送服务，用户点击了同意还是不同意，以及用户之后又做了怎样的更改我们都无从得知，现在 apple 开放了这个 API，我们可以直接获取到用户的设定信息了。
+//    [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+//        NSLog(@"%@",settings);
+//    }];
+//
+//    self.notiContent = [[UNMutableNotificationContent alloc] init];
+//    //引入代理
+//    [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+
     
     //openshanre分享
     [self setUpShare];
@@ -110,8 +135,7 @@
             NSLog(@"registrationID获取失败，code：%d",resCode);
         }
     }];
-    //自定义消息
-    [self zdyNoticaton];
+    
     
     
 }
@@ -135,6 +159,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         //你要处理的逻辑
+//        self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:1];
         
         if ([UIApplication sharedApplication].applicationIconBadgeNumber != 0) {
             //最后把Iconbadge归0
@@ -150,11 +175,50 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required
     NSDictionary *userInfo = response.notification.request.content.userInfo;
-    
-    
+    NSLog(@"%@", userInfo);
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         //你要处理的逻辑
+//        self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:1];
+        NSString *selectedId = [NSString stringWithFormat:@"%@", userInfo[@"id"]];
+        NSString *noticeType = [NSString stringWithFormat:@"%@", userInfo[@"noticeType"]];
+        
+        if ([noticeType isEqualToString:@"1"])
+        {
+            self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:1];
+        }
+        else if ([noticeType isEqualToString:@"2"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"3"])
+        {
+            self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:2];
+        }
+        else if ([noticeType isEqualToString:@"4"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"5"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"6"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"7"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"8"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"9"])
+        {
+            [self getMoreDetailContentWithId:selectedId];
+        }
         
         if ([UIApplication sharedApplication].applicationIconBadgeNumber != 0) {
             //最后把Iconbadge归0
@@ -189,11 +253,214 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 - (void)networkDidReceiveMessage:(NSNotification *)notification {
-    NSDictionary * userInfo = [notification userInfo];
+    
+    NSDictionary *userInfo = [notification userInfo];
     NSString *content = [userInfo valueForKey:@"content"];
-     NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
     NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
     NSLog(@"%@", userInfo);
+    NSDictionary *dic = [DCSpeedy dictionaryWithJsonString:content];
+    NSLog(@"%@", dic);
+//    [self addLocalNotificationWithIntroduction:dic];
+    NSLog(@"%@", dic[@"data"][@"noticeImgUrl"]);
+    if ([DCSpeedy isBlankString:dic[@"data"][@"noticeImgUrl"]])
+    {
+        [self addNormalNotication:dic];
+    }
+    else
+    {
+        [self addImagesNotification:dic];
+    }
+    
+}
+
+#pragma mark - 添加本地通知
+
+//添加本地通知
+- (void)regiterLocalNotification:(UNMutableNotificationContent *)content AndMessage:(NSDictionary *)dic
+{
+    //这里用来跳转相应的界面
+    NSString *type = [NSString stringWithFormat:@"%@", dic[@"type"]];
+    content.launchImageName = type;
+    NSString *noticeType = [NSString stringWithFormat:@"%@", dic[@"data"][@"noticeType"]];
+    content.threadIdentifier = noticeType;
+    content.subtitle = dic[@"data"][@"noticeTitle"];
+    content.body = dic[@"data"][@"noticeIntroduction"];
+    content.badge = @1;
+    UNNotificationSound *sound = [UNNotificationSound soundNamed:@"caodi.m4a"];
+    content.sound = sound;
+    
+    content.categoryIdentifier = [NSString stringWithFormat:@"%@", dic[@"data"][@"id"]];
+    //重复提醒，时间间隔要大于60s
+    UNTimeIntervalNotificationTrigger *trigger1 = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1.0 repeats:NO];
+    NSString *requertIdentifier = @"RequestIdentifier";
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requertIdentifier content:content trigger:trigger1];
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        NSLog(@"Error:%@",error.localizedDescription);
+    }];
+    
+}
+
+// 普通通知
+- (void)addNormalNotication:(NSDictionary *)sender {
+    
+    [self regiterLocalNotification:self.notiContent AndMessage:sender];
+    
+}
+
+// 图片通知
+- (void)addImagesNotification:(NSDictionary *)sender {
+    
+    NSString *imageFile = [[NSBundle mainBundle] pathForResource:@"4" ofType:@"png"];
+    
+//    NSURL *url = [NSURL URLWithString:@"https://t10.baidu.com/it/u=945743694,2349604750&fm=173&s=9B9D6C855C12D1C61C00859803001097&w=640&h=356&img.JPEG"];
+    
+    UNNotificationAttachment *imageAttachment = [UNNotificationAttachment attachmentWithIdentifier:@"iamgeAttachment" URL:[NSURL fileURLWithPath:imageFile] options:nil error:nil];
+    self.notiContent.attachments = @[imageAttachment];
+    
+    [self regiterLocalNotification:self.notiContent AndMessage:sender];
+}
+// 视频通知
+- (void)addVideoNotification:(NSDictionary *)sender {
+    
+    NSString *videoFile = [[NSBundle mainBundle] pathForResource:@"视频名字" ofType:@"格式"];
+    
+    UNNotificationAttachment *imageAttachment = [UNNotificationAttachment attachmentWithIdentifier:@"iamgeAttachment" URL:[NSURL fileURLWithPath:videoFile] options:nil error:nil];
+    self.notiContent.attachments = @[imageAttachment];
+    
+    [self regiterLocalNotification:self.notiContent AndMessage:sender];
+}
+
+#pragma mark - **************** 移除本地通知，在不需要此通知时记得移除
+-(void)removeNotification{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
+#pragma mark - 点击本地通知代理方法（应用在前台或后台，未被杀死时）
+#pragma mark - delegate
+//只有当前处于前台才会走，加上返回方法，使在前台显示信息
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    
+    NSLog(@"执行willPresentNotificaiton");
+    completionHandler(UNNotificationPresentationOptionBadge|
+                      UNNotificationPresentationOptionSound|
+                      UNNotificationPresentationOptionAlert);
+}
+
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    
+    
+    NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+    NSString *subTitle = response.notification.request.content.subtitle;
+    NSString *type = response.notification.request.content.launchImageName;
+    NSString *noticeType = response.notification.request.content.threadIdentifier;
+    NSLog(@"收到通知：%@",response.notification.request.content);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
+    NSLog(@"%@", categoryIdentifier);
+    NSLog(@"%@", subTitle);
+    
+    if ([type isEqualToString:@"1"])
+    {
+        if ([noticeType isEqualToString:@"1"])
+        {
+            self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:1];
+        }
+        else if ([noticeType isEqualToString:@"2"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"3"])
+        {
+            self.tabbarController.selectedViewController = [self.tabbarController.viewControllers objectAtIndex:2];
+        }
+        else if ([noticeType isEqualToString:@"4"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"5"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"6"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"7"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"8"])
+        {
+            
+        }
+        else if ([noticeType isEqualToString:@"9"])
+        {
+//            [self getMoreDetailContentWithId:categoryIdentifier andTitle:subTitle];
+        }
+    }
+    else if ([type isEqualToString:@"2"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"3"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"4"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"5"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"6"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"7"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"8"])
+    {
+        
+    }
+    else if ([type isEqualToString:@"9"])
+    {
+        
+    }
+    
+    
+    completionHandler();
+    
+}
+
+#pragma mark - 调取公告详情内容
+-(void)getMoreDetailContentWithId:(NSString *)idd
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:idd forKey:@"Messageid"];
+    __weak typeof(self) weakSelf = self;
+    [AFOwnerHTTPSessionManager getAddToken:GetAgentDetailMessage Parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+        NSString *str = responseObject[@"code"];
+        if ([str isEqualToString:@"0000"])
+        {
+            LYSkipViewController *serVC = [[LYSkipViewController alloc] init];
+            serVC.title = responseObject[@"Data"][@"Title"];
+            serVC.urlString = responseObject[@"Data"][@"Content"];
+            serVC.type = @"1";
+            [weakSelf.window.rootViewController presentViewController:[[LYNavigationController alloc] initWithRootViewController:serVC] animated:YES completion:nil];
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
 }
 
 -(void)setUpUserData
@@ -337,6 +604,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -346,7 +614,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 

@@ -15,5 +15,7 @@
 @property(nonatomic, strong) NSString *Content;
 //时间
 @property(nonatomic, strong) NSString *Senddata;
+//简介
+@property(nonatomic, strong) NSString *Introduction;
 
 @end

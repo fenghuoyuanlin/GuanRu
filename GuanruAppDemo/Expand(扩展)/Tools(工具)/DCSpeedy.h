@@ -126,6 +126,8 @@
 + (NSString *)timeStampToStr:(NSString *)creaTime;
 //获取当前时间的时间戳
 +(NSString *)getNowTimeTimestamp;
+//JSON字符串转化为字典
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
 
 //网络监测
 + (NSInteger)checkNetwork;

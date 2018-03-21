@@ -110,6 +110,7 @@ static NSString *const LYGatherCellID = @"LYGatherCell";
         {
             NSDictionary *dic = responseObject[@"Data"];
             NSArray *arr = dic[@"list"];
+            [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"list"];
             _gatherArr = [LYGatherItem mj_objectArrayWithKeyValuesArray:arr];
             for(LYGatherItem *model in _gatherArr)
             {
@@ -117,6 +118,7 @@ static NSString *const LYGatherCellID = @"LYGatherCell";
                 
             }
             [weakSelf.tableView reloadData];
+            
             if (weakSelf.gatherArr.count == 10)
             {
                 [weakSelf.tableView.mj_footer endRefreshing];
@@ -130,6 +132,19 @@ static NSString *const LYGatherCellID = @"LYGatherCell";
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
+        if (error)
+        {
+            NSArray *arrr = [[NSUserDefaults standardUserDefaults] objectForKey:@"list"];
+            NSLog(@"-----%@----", arrr);
+            _gatherArr = [LYGatherItem mj_objectArrayWithKeyValuesArray:arrr];
+            self.mutableArrModel = nil;
+            for(LYGatherItem *model in _gatherArr)
+            {
+                [weakSelf.mutableArrModel addObject:model];
+                
+            }
+            [weakSelf.tableView reloadData];
+        }
     }];
 }
 

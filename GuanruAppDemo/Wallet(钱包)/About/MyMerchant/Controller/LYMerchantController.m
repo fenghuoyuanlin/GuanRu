@@ -134,7 +134,7 @@
     _gatherView.frame = CGRectMake(0, _signLength + 30, ScreenW, ScreenH - 30 - _signLength - 64);
     [self.view addSubview:_gatherView];
     LYGatheringController *gatherVC = [[LYGatheringController alloc] init];
-    gatherVC.height = ScreenH - 230 - 64;
+    gatherVC.height = ScreenH - 30 - _signLength - 64;
     [_gatherView addSubview:gatherVC.view];
 }
 
@@ -160,6 +160,7 @@
             weakSelf.bottomView.numLabel.text = [NSString stringWithFormat:@"%.2f", [_merchantModel.amt doubleValue]];
             NSString *totalStr = [NSString stringWithFormat:@"%.2f", [_merchantModel.deposit doubleValue]];
             weakSelf.bottomView.totalMoney.text = [NSString stringWithFormat:@"总收益：%@", totalStr];
+            [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"dataCache"];
             //判断用户是否冻结金额
             if ([weakSelf.merchantModel.isLock isEqualToString:@"1"])
             {
@@ -181,6 +182,31 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
+        if (error)
+        {
+            NSLog(@"%@", error);
+            NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"dataCache"];
+            weakSelf.merchantModel = [LYMerchantModel mj_objectWithKeyValues:dic];
+            NSLog(@"%@", _merchantModel.amt);
+            weakSelf.bottomView.numLabel.text = [NSString stringWithFormat:@"%.2f", [_merchantModel.amt doubleValue]];
+            NSString *totalStr = [NSString stringWithFormat:@"%.2f", [_merchantModel.deposit doubleValue]];
+            weakSelf.bottomView.totalMoney.text = [NSString stringWithFormat:@"总收益：%@", totalStr];
+            //判断用户是否冻结金额
+            if ([weakSelf.merchantModel.isLock isEqualToString:@"1"])
+            {
+                weakSelf.bottomView.freezeMoneyLabel.text = [NSString stringWithFormat:@"%.2f", [_merchantModel.frozenamt doubleValue]];
+                _signLength = 200;
+                [self setUpBottomLabel];
+            }
+            else
+            {
+                weakSelf.bottomView.bottomView.hidden = YES;
+                _signLength = 180;
+                [self setUpBottomLabel];
+            }
+            
+            
+        }
         
     }];
 }

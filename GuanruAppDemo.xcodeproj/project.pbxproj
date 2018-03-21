@@ -152,6 +152,8 @@
 		FC568ECB2001C82600400EE7 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FC568EC22001C82500400EE7 /* YYClassInfo.m */; };
 		FC56E24520078E5D007E4FAB /* LYMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC56E24420078E5D007E4FAB /* LYMessageModel.m */; };
 		FC56E24820078EAD007E4FAB /* LYMessageModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC56E24720078EAD007E4FAB /* LYMessageModelCell.m */; };
+		FC620701204F9B1B003FA5B0 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = FC620700204F9B1B003FA5B0 /* 4.png */; };
+		FC620704204FD9D0003FA5B0 /* LYSkipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC620703204FD9D0003FA5B0 /* LYSkipViewController.m */; };
 		FC62BB1E1FDBB6D000791FE8 /* LYForceUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC62BB1D1FDBB6D000791FE8 /* LYForceUpdateView.m */; };
 		FC67B13F1FE11F9C00207C71 /* LYDayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC67B13E1FE11F9C00207C71 /* LYDayItem.m */; };
 		FC83E7F92023320300DD6D54 /* LYWithdrawDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC83E7F82023320300DD6D54 /* LYWithdrawDetailController.m */; };
@@ -590,6 +592,9 @@
 		FC56E24420078E5D007E4FAB /* LYMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYMessageModel.m; sourceTree = "<group>"; };
 		FC56E24620078EAD007E4FAB /* LYMessageModelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMessageModelCell.h; sourceTree = "<group>"; };
 		FC56E24720078EAD007E4FAB /* LYMessageModelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYMessageModelCell.m; sourceTree = "<group>"; };
+		FC620700204F9B1B003FA5B0 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		FC620702204FD9D0003FA5B0 /* LYSkipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSkipViewController.h; sourceTree = "<group>"; };
+		FC620703204FD9D0003FA5B0 /* LYSkipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSkipViewController.m; sourceTree = "<group>"; };
 		FC62BB1C1FDBB6D000791FE8 /* LYForceUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYForceUpdateView.h; sourceTree = "<group>"; };
 		FC62BB1D1FDBB6D000791FE8 /* LYForceUpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYForceUpdateView.m; sourceTree = "<group>"; };
 		FC67B13D1FE11F9C00207C71 /* LYDayItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYDayItem.h; sourceTree = "<group>"; };
@@ -2253,6 +2258,7 @@
 				FCA027E91F9DC8740018E4AE /* LaunchScreen.storyboard */,
 				FCA027EC1F9DC8740018E4AE /* Info.plist */,
 				FCA027ED1F9DC8740018E4AE /* main.m */,
+				FC620700204F9B1B003FA5B0 /* 4.png */,
 				FCA029701F9DCDF80018E4AE /* PrefixHeader.pch */,
 			);
 			path = GuanruAppDemo;
@@ -2285,6 +2291,8 @@
 				FC33CD4C1FD8D973007D603C /* LYGuidePageController.m */,
 				FC62BB1C1FDBB6D000791FE8 /* LYForceUpdateView.h */,
 				FC62BB1D1FDBB6D000791FE8 /* LYForceUpdateView.m */,
+				FC620702204FD9D0003FA5B0 /* LYSkipViewController.h */,
+				FC620703204FD9D0003FA5B0 /* LYSkipViewController.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -3255,6 +3263,7 @@
 				FC50787A1FFE515200702116 /* AliData.plist in Resources */,
 				FCA028F51F9DCA5F0018E4AE /* addressData.plist in Resources */,
 				FCA0291B1F9DCA5F0018E4AE /* sdRefeshView_arrow@2x.png in Resources */,
+				FC620701204F9B1B003FA5B0 /* 4.png in Resources */,
 				FC568EAB2001C1ED00400EE7 /* Documents.plist in Resources */,
 				FC3376211FA6BA670030E39B /* Account.plist in Resources */,
 				FC3376301FA71B140030E39B /* CardItem.plist in Resources */,
@@ -3414,6 +3423,7 @@
 				FC3F68891FA1D3A40023F881 /* LYPersonlSettingCell.m in Sources */,
 				FC3B7B6B1FD6C06000BE2C9E /* Reachability.m in Sources */,
 				FCA0291A1F9DCA5F0018E4AE /* UIAlertView+LBXAlertAction.m in Sources */,
+				FC620704204FD9D0003FA5B0 /* LYSkipViewController.m in Sources */,
 				FCF7FF1F1FFF0A4B001F4BEF /* SGPageTitleViewConfigure.m in Sources */,
 				FC3F84461FF34DD50074786C /* OpenShare+Renren.m in Sources */,
 				FCC9B8862017245E003D07C1 /* LYServiceItemCell.m in Sources */,

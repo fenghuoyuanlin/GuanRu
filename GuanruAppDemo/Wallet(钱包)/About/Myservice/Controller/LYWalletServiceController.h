@@ -12,4 +12,6 @@
 //url链接地址
 @property(nonatomic, strong) NSString *urlString;
 
+@property(nonatomic, strong) NSString *type;
+
 @end

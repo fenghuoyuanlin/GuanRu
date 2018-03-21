@@ -11,7 +11,6 @@
 
 static NSString * const AFOwnerHTTPSessionManagerBaseURLString = @"http://192.168.1.11";
 
-
 @implementation AFOwnerHTTPSessionManager
 
 + (instancetype)shareManager
@@ -72,7 +71,15 @@ static NSString * const AFOwnerHTTPSessionManagerBaseURLString = @"http://192.16
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (error)
+            if (error.code == -1001)
+            {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [DCSpeedy alertMes:@"服务器异常，请查看网络是否正确连接"];
+                });
+                //block传递参数，类似代理传值
+                failure(task, error);
+            }
+            else
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [DCSpeedy alertMes:@"服务器维护中"];
@@ -122,7 +129,15 @@ static NSString * const AFOwnerHTTPSessionManagerBaseURLString = @"http://192.16
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (error)
+            if (error.code == -1001)
+            {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [DCSpeedy alertMes:@"服务器异常，请查看网络是否正确连接"];
+                });
+                //block传递参数，类似代理传值
+                failure(task, error);
+            }
+            else
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [DCSpeedy alertMes:@"服务器维护中"];
@@ -171,7 +186,15 @@ static NSString * const AFOwnerHTTPSessionManagerBaseURLString = @"http://192.16
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (error)
+            if (error.code == -1001)
+            {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [DCSpeedy alertMes:@"服务器异常，请查看网络是否正确连接"];
+                });
+                //block传递参数，类似代理传值
+                failure(task, error);
+            }
+            else
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [DCSpeedy alertMes:@"服务器维护中"];
@@ -221,7 +244,15 @@ static NSString * const AFOwnerHTTPSessionManagerBaseURLString = @"http://192.16
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (error)
+            if (error.code == -1001)
+            {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [DCSpeedy alertMes:@"服务器异常，请查看网络是否正确连接"];
+                });
+                //block传递参数，类似代理传值
+                failure(task, error);
+            }
+            else
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [DCSpeedy alertMes:@"服务器维护中"];

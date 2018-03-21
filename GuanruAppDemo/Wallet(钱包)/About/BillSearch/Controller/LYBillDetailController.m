@@ -132,7 +132,15 @@ static NSString *const LYBillDetailCellID = @"LYBillDetailCell";
     NSString *userAmt = [NSString stringWithFormat:@"%.2f", [_billDetailItem.userAmt doubleValue]];
     NSString *bankId = _billDetailItem.bankorderid;
     
-    _userArr = @[date, @"支付宝", phoneStr, user, aliaccount, bankId, userAmt, @"花呗支付"];
+    if ([_billDetailItem.productid isEqualToString:@"3"])
+    {
+        _userArr = @[date, @"支付宝", phoneStr, user, aliaccount, bankId, userAmt, @"信用卡支付"];
+    }
+    else
+    {
+        _userArr = @[date, @"支付宝", phoneStr, user, aliaccount, bankId, userAmt, @"花呗支付"];
+    }
+    
 }
 
 

@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^cycleImageClickBlock) (NSInteger integer);
 @interface LYCycleCell : UICollectionViewCell
 /** 轮播图片点击事件 */
-@property (nonatomic, copy) dispatch_block_t cycleImageClickBlock;
+@property (nonatomic, copy) cycleImageClickBlock imageClickBlock;
+//是否转变图片
+@property(nonatomic, strong) NSString *isChange;
+
+
+-(void)setUpUI;
 
 @end

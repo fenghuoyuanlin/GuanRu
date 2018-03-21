@@ -2,6 +2,7 @@
 //  API.h
 //  GuanruAppDemo
 //
+
 //  Created by 刘园 on 2017/11/29.
 //  Copyright © 2017年 guanrukeji. All rights reserved.
 //
@@ -11,7 +12,7 @@
 //服务器
 //#define Localhost @"http://api.047104086014.gaofangh.com/"
 //测试服
-//#define Localhost @"http://192.188.88.177:8081/"//本地一
+//#define Localhost @"http://192.188.88.177:8081/"  //本地一
 //#define Localhost @"http://192.168.1.11/"//本地一
 #define Localhost @"http://www.1shouyin.com/"//本地二
 
@@ -96,6 +97,9 @@
 #define AddTestFenrun @"api/Agent/AddTestFenrun"
 //获取公告路径
 #define GetAgentMessage @"api/Agent/GetAgentMessage"
+//获取公告详情
+#define GetAgentDetailMessage @"api/Agent/GetAgentMessageByMessageid"
+
 //获取下级代理商所设置费率的范围
 #define GETChildAgentArea @"api/Agent/GETChildAgentArea"
 
